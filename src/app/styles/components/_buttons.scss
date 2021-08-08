@@ -1,0 +1,42 @@
+@mixin btn{
+    text-align: center;
+    letter-spacing: 1.25px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.btn {
+    @include btn;
+    border-radius: $border-radius-md;
+    font-size: 14px;
+    line-height: 16px;
+    padding: $spacing-squish-md;
+}
+
+.btn {
+    @include btn;
+    border-radius: $border-radius-lg;
+    font-size: 12px;
+    line-height: 14px;
+    padding: $spacing-squish-xs;
+}
+
+.btn-filter {
+    @include btn;
+    border-radius: $border-radius-lg;
+    font-size: 12px;
+    line-height: 14px;
+    padding: $spacing-squish-xs;
+    font-weight: 700;
+}
+
+.btn-primary {
+    color: $color-white;
+    background-color: $color-secondary;
+}
+
+.btn-primary {
+    color: $color-heading;
+    background-color: $color-gray-2;
+}

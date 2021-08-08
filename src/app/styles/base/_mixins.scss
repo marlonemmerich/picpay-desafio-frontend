@@ -1,0 +1,21 @@
+// breakpoints
+@mixin break-sm {
+    @media(min-width: #{$breakpoint-sm}){
+        @content;
+    }
+}
+@mixin break-md {
+    @media(min-width: #{$breakpoint-md}){
+        @content;
+    }
+}
+@mixin break-lg {
+    @media(min-width: #{$breakpoint-lg}){
+        @content;
+    }
+}
+@mixin break-xl {
+    @media(min-width: #{$breakpoint-xl}){
+        @content;
+    }
+}

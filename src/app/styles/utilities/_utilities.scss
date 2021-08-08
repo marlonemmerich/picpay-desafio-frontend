@@ -1,0 +1,36 @@
+.visually-hidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute !important;
+    width: 1px;
+}
+
+.pay {
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    line-height: 29px;
+    & .pay-primary {
+        color: $color-primary;
+    }
+    & .pay-white {
+        color: $color-white;
+    }
+}
+
+.friends {
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    line-height: 29px;
+    & .friends-primary {
+        color: $color-secondary;
+    }
+    & .friends-white {
+        color: $color-white;
+    }
+}

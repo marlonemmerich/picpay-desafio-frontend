@@ -1,0 +1,59 @@
+@mixin h1{
+    font-size: 36px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    line-height: 44px;
+    color: $color-heading;
+}
+
+@mixin h2{
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    line-height: 37px;
+    color: $color-heading;
+}
+
+@mixin h3{
+    font-size: 18px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 22px;
+    color: $color-heading;
+}
+
+@mixin body-text{
+    font-size: 14px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    line-height: 17px;
+    color: $color-body-text;
+}
+
+@mixin secondary-text{
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 400;
+    line-height: 20px;
+    color: $color-secondary-text;
+}
+
+h1 {
+    @include h1;
+}
+
+h2 {
+    @include h2;
+}
+
+h3 {
+    @include h3;
+}
+
+p {
+    @include body-text;
+}
+
+small {
+    @include secondary-text;
+}
