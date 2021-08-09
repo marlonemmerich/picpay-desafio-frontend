@@ -7,14 +7,18 @@
       [name]="controlName"
       [type]="type"
       class="form-control"
-      [ngClass]="{ 'is-invalid': validation.isValid(formControl) && !isReadonly }"
+      [ngClass]="{ 'is-invalid': validation.isValid(formControl) }"
       [id]="controlName"
       placeholder="{{ title }}"
-      [readonly]="isReadonly"
     />
     <app-input-message
-      *ngIf="validation.hasErrorValidator(formControl, 'required') && !isReadonly"
+      *ngIf="validation.hasErrorValidator(formControl, 'required')"
       message="Campo Obrigatório"
+      type="danger"
+    ></app-input-message>
+    <app-input-message
+      *ngIf="validation.hasErrorValidator(formControl, 'email')"
+      message="E-mail Inválido"
       type="danger"
     ></app-input-message>
   </div>

@@ -28,7 +28,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     /**
-     * guarda path de onde o usuário está vindo 
+     * guarda o path de onde o usuário está vindo 
      * para para redirecionar de volta após login
      */
     this.route.queryParams.subscribe(params => {
@@ -36,7 +36,7 @@ export class LoginPageComponent implements OnInit {
     })
 
     this.loginForm = this.fb.group({
-      email: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     })
   }

@@ -14,8 +14,7 @@ export class InputTextComponent implements OnInit {
   @Input() formGroup: FormGroup;
   @Input() controlName: string;
   @Input() title: string;
-  @Input() type: string;
-  @Input() isReadonly: boolean = false;
+  @Input() type: string = 'text';
   @Input() isOptional: boolean = false;
  
   constructor(public validation: InputValidationService) {}
