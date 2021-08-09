@@ -15,18 +15,24 @@ const APIURL = `${environment.apiUrl}/account`;
 export class AuthService {
   constructor(private http: HttpClient, private userService: UserService) {}
  
-  authenticate(user): Observable<HttpResponse<any>> {
+  authenticate(user): Observable<HttpResponse<Account[]>> {
     return this.http
-      .get<Account>(`${APIURL}?email=${user.email}`, {
-        observe: 'response',
-      })
+      .get<Account>(`${APIURL}?email=${user.email}`)
       .pipe(
-        map((res) => {
-          if (res.body[0] && user.password === res.body[0].password){
-            this.userService.setSession(res.body[0].id);
-            return res.body[0];
+        map((accounts: any) => {
+          if(accounts.length){
+            return accounts[0]
           } else {
-            throw new Error('Usuário ou Senha Inválidos!')
+            throw new ErrorEvent('accountError', {message: 'Usuário não cadastrado!'})
+          }
+          
+        }),
+        map((account) => {
+          if (account && account.password === user.password){
+            this.userService.setSession(account.id);
+            return account;
+          } else {
+            throw new ErrorEvent('passwordError', {message: 'Usuário ou Senha inválidos!'})
           }
         })
       );

@@ -8,7 +8,11 @@ const routes: Routes = [
     { 
         path: '', 
         component: LoginPageComponent,
-        canActivate: [LoginPageGuard] 
+        canActivate: [LoginPageGuard],
+        data: {
+            title: 'PayFriends - Login',
+            showHeader: false
+        }
     }
 ]
 

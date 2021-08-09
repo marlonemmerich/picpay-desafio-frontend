@@ -1,1 +1,49 @@
-<p>header works!</p>
+<header class="mt-header">
+    <nav class="navbar fixed-top flex-row justify-content-between align-items-center">
+
+      <div class="d-flex justify-content-start w-100">
+        <div class="logo-payfriends">
+            <div class="pay pay-white">Pay<span class="friends friends-white">Friends</span></div>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-end w-100" showIfLogged>
+        <div
+          class="navbar__user d-flex flex-row align-items-center"
+          *ngIf="user$ | async as user"
+        >
+          <picture>
+            <source srcset="{{ user.urlFoto }}" type="image/svg+xml" />
+            <img
+              src="{{ user.urlFoto }}"
+              class="navbar__user--image"
+              alt="Foto {{ user.name }}"
+            />
+          </picture>
+          <div
+            class="navbar__user--name"
+            ngbDropdown
+            display="dynamic"
+            placement="bottom-right"
+          >
+            <button
+              role="menu"
+              class="btn user-menu"
+              ngbDropdownToggle
+            >
+              <span class="d-none d-sm-inline-block">{{ user.name }}</span>
+            </button>
+            <div ngbDropdownMenu aria-labelledby="userMenu">
+              <button ngbDropdownItem (click)="logout()">
+                Sair
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+   
+   
+  
+  

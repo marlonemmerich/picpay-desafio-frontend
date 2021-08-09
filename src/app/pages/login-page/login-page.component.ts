@@ -56,7 +56,7 @@ export class LoginPageComponent implements OnInit {
         (error) => {
           console.log(error);
           this.alertLogin.clear();
-          this.alertLogin.danger('Usuário ou Senha Inválidos');
+          this.alertLogin.danger(error.message);
           this.loginForm.get('password').reset();
         }
       );

@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { ButtonComponent } from './components/button/button.component';
-
-
 
 @NgModule({
   declarations: [
@@ -10,6 +9,9 @@ import { ButtonComponent } from './components/button/button.component';
   ],
   imports: [
     CommonModule
+  ],
+  exports: [
+    ButtonComponent
   ]
 })
 export class AppButtonModule { }

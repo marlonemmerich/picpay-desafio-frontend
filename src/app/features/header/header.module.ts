@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -9,7 +10,11 @@ import { HeaderComponent } from './header.component';
     HeaderComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    NgbDropdownModule
+  ],
+  exports: [
+    HeaderComponent
   ]
 })
 export class HeaderModule { }

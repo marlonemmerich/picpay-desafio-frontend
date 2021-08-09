@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core'
 import { RouterModule, Routes } from '@angular/router'
 
-import { AuthGuard } from './core/guards/auth.guard'
 import { Rotas } from './shared/utils/rotas'
 
 const routes: Routes = [
@@ -12,8 +11,7 @@ const routes: Routes = [
     },
     {
         path: Rotas.PAGAMENTOS,
-        loadChildren: () => import('./pages/pagamentos-page/pagamentos-page.module').then((m) => m.PagamentosPageModule),
-        canActivate: [AuthGuard]
+        loadChildren: () => import('./pages/pagamentos-page/pagamentos-page.module').then((m) => m.PagamentosPageModule)
     },
     {
         path: Rotas.LOGIN,
