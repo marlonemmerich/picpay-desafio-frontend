@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 import { AppInputTextModule } from './app-input-text/app-input-text.module';
-
-
+import { AppInputMessageModule } from './app-input-message/app-input-message.module';
 
 @NgModule({
-  declarations: [],
-  imports: [
+  exports: [
     CommonModule,
-    AppInputTextModule
+    AppInputTextModule,
+    AppInputMessageModule
   ]
 })
 export class AppFormControlsModule { }

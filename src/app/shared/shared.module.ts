@@ -6,19 +6,18 @@ import { AppModalModule } from './app-modal/app-modal.module';
 import { AppProfileModule } from './app-profile/app-profile.module';
 import { AppSearchModule } from './app-search/app-search.module';
 import { AppTableModule } from './app-table/app-table.module';
-
-
+import { AppAlertModule } from './app-alert/app-alert.module';
 
 @NgModule({
-  declarations: [],
-  imports: [
+  exports: [
     CommonModule,
     AppFormControlsModule,
     AppButtonModule,
     AppModalModule,
     AppProfileModule,
     AppSearchModule,
-    AppTableModule
+    AppTableModule,
+    AppAlertModule
   ]
 })
 export class SharedModule { }

@@ -1,1 +1,20 @@
-<p>input-text works!</p>
+<div [formGroup]="formGroup">
+    <label for="codinep" class="form-label">
+        {{ title }} <small *ngIf="isOptional">(Opcional)</small>
+    </label>
+    <input
+      [formControlName]="controlName"
+      [name]="controlName"
+      [type]="type"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': validation.isValid(formControl) && !isReadonly }"
+      [id]="controlName"
+      placeholder="{{ title }}"
+      [readonly]="isReadonly"
+    />
+    <app-input-message
+      *ngIf="validation.hasErrorValidator(formControl, 'required') && !isReadonly"
+      message="Campo Obrigatório"
+      type="danger"
+    ></app-input-message>
+  </div>

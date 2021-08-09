@@ -14,7 +14,7 @@
     padding: $spacing-squish-md;
 }
 
-.btn {
+.btn-small {
     @include btn;
     border-radius: $border-radius-lg;
     font-size: 12px;
@@ -36,7 +36,7 @@
     background-color: $color-secondary;
 }
 
-.btn-primary {
+.btn-secondary {
     color: $color-heading;
     background-color: $color-gray-2;
 }
