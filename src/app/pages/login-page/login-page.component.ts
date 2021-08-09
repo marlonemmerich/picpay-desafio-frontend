@@ -1,7 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AlertComponent } from 'src/app/shared/app-alert/components/alert/alert.component';
+
+import { Rotas } from 'src/app/shared/utils/rotas';
+import { AuthService } from 'src/app/core/auth/auth.service';
+import { AlertComponent } from 'src/app/shared/components/app-alert/components/alert/alert.component';
+import { InputValidationService } from 'src/app/shared/validations/input-validation/input-validation.service';
 
 @Component({
   selector: 'app-login-page',
@@ -15,9 +19,11 @@ export class LoginPageComponent implements OnInit {
   @ViewChild('alertLogin') alertLogin: AlertComponent;
 
   constructor(
+    public validation: InputValidationService,
     private fb: FormBuilder,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -31,13 +37,33 @@ export class LoginPageComponent implements OnInit {
 
     this.loginForm = this.fb.group({
       email: ['', Validators.required],
-      senha: ['', Validators.required]
+      password: ['', Validators.required]
     })
   }
 
   /**
-   * método para realizar e validar o login do usuário
+   * autentica o login do usuário e redireciona para 
+   * página de pagamentos ou a rota que tentou acessar anteriormente
    */
-  public login() { }
+  public login() {
+    if (this.loginForm.valid && !this.loginForm.pending) {
+      this.authService.authenticate(this.loginForm.value).subscribe(
+        () => {
+          this.fromUrl
+            ? this.router.navigateByUrl(this.fromUrl)
+            : this.router.navigateByUrl(Rotas.PAGAMENTOS);
+        },
+        (error) => {
+          console.log(error);
+          this.alertLogin.clear();
+          this.alertLogin.danger('Usuário ou Senha Inválidos');
+          this.loginForm.get('password').reset();
+        }
+      );
+    } else {
+      this.validation.validateAllFormFields(this.loginForm)
+    }
+
+  }
 
 }

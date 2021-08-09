@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { InputValidationService } from 'src/app/shared/validations/input-validation/input-validation.service';
 
-import { InputValidationService } from 'src/app/core/validations/inputValidation/inputValidation.service';
+
 
 @Component({
   selector: 'app-input-text',

@@ -1,9 +1,13 @@
 <section id="login">
     <article class="login__left">
         <div class="login__form">
+
             <div class="logo-payfriends">
                 <div class="pay pay-primary">Pay<span class="friends friends-primary">Friends</span></div>
             </div>
+
+            <!-- form login -->
+
             <form #form="ngForm" [formGroup]="loginForm" (submit)="login()">
                 <h2 class="mt-3 mb-4">Bem-vindo de volta</h2>
                 <div class="form-group">
@@ -18,14 +22,29 @@
                     <app-input-text
                         title="Senha"
                         type="password"
-                        controlName="senha"
+                        controlName="password"
                         [formGroup]="loginForm"
                     ></app-input-text>
                 </div>
                 <app-alert #alertLogin></app-alert>
                 <button type="submit" class="btn btn-primary w-100 mt-4">Entrar</button>
             </form>
+
+            <!-- fim form login -->
+
         </div>
     </article>
-    <article class="login__right"></article>
+    <article class="login__right">
+
+        <!-- imagem da página de login -->
+        
+        <div class="login__bg">
+            <picture>
+                <img src="../../../assets/imgs/bg_login.png" alt="Ilustração de um homem com celular adicionando pagamentos">
+            </picture>
+        </div>
+
+        <!-- fim imagem da página de login -->
+
+    </article>
 </section>
