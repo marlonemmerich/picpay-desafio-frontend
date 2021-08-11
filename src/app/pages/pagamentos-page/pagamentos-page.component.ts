@@ -1,6 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { faTimesCircle, faPencilAlt, faFilter } from '@fortawesome/free-solid-svg-icons';
+import {
+  faTimesCircle,
+  faPencilAlt,
+  faFilter,
+} from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 
 import { Payment } from 'src/app/shared/interfaces/payment';
@@ -10,7 +14,7 @@ import { PaymentService } from './services/payment.service';
 
 enum ModalType {
   NEW = 'new',
-  EDIT = 'edit'
+  EDIT = 'edit',
 }
 
 @Component({
@@ -23,17 +27,25 @@ export class PagamentosPageComponent implements OnInit {
   fonts = {
     faTimesCircle,
     faPencilAlt,
-    faFilter
-  }
-  
+    faFilter,
+  };
+
   @ViewChild('modalPayment') modalPayment: ModalPagamentoComponent;
   @ViewChild('modalDeletePayment')
   modalDeletePayment: ModalExcluirPagamentoComponent;
 
-  payments$: Observable<Payment[]>;
-  public modalType = ModalType
+  // Observable de Payments
+  public payments$: Observable<Payment[]>;
 
-  constructor(private paymentService: PaymentService) {}
+  // Tipo da modal
+  public modalType = ModalType;
+
+  // Search value
+  public filter: string = '';
+
+  constructor(
+    private paymentService: PaymentService
+  ) {}
 
   ngOnInit(): void {
     this.payments$ = this.paymentService.getPayments();

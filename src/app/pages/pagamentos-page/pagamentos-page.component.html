@@ -15,8 +15,10 @@
     <!-- ações do topo da tabela (filtro, pesquisa, paginação) -->
 
     <div class="table__actions d-flex justify-content-between mb-4">
-      <div>
-        <input type="text" placeholder="Pesquisar por usuário" />
+      <div class="d-flex">
+        <app-search
+            (onTyping)="filter = $event" [value]="filter">
+        </app-search>
         <button class="ml-2 btn btn-sm btn-action">
           <fa-icon class="mr-2" [icon]="fonts.faFilter"></fa-icon>Filtrar
         </button>
@@ -30,50 +32,59 @@
 
     <!-- tabela meus pagamentos -->
 
-    <table class="table table-striped">
+    <table class="table table-striped" *ngIf="(payments$ | async  | filterByUser: filter)?.length; else noPayment">
       <thead>
         <tr>
-          <th scope="col">Usuário</th>
-          <th scope="col">Título</th>
-          <th scope="col">Data</th>
-          <th scope="col">Valor</th>
-          <th scope="col">Status</th>
-          <th scope="col">Ações</th>
+          <th scope="col" tabindex="0">Usuário</th>
+          <th scope="col" tabindex="0">Título</th>
+          <th scope="col" tabindex="0">Data</th>
+          <th scope="col" tabindex="0">Valor</th>
+          <th scope="col" tabindex="0">Status</th>
+          <th scope="col" tabindex="0">Ações</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let payment of payments$ | async">
-          <td>
+        <tr *ngFor="let payment of payments$ | async | filterByUser: filter">
+          <td tabindex="0">
             {{ payment?.name }}
             <br />
             <small>@{{ payment?.username }}</small>
           </td>
-          <td>{{ payment?.title }}</td>
-          <td>
+          <td tabindex="0">{{ payment?.title }}</td>
+          <td tabindex="0">
             {{ payment?.date | date: 'd MMM y' }}
             <br />
             <small>{{ payment?.date | date: 'shortTime' }}</small>
           </td>
-          <td>{{ payment?.value | currency: 'BRL' }}</td>
-          <td>{{ getStatus(payment?.isPayed) }}</td>
+          <td tabindex="0">{{ payment?.value | currency: 'BRL' }}</td>
+          <td tabindex="0">{{ getStatus(payment?.isPayed) }}</td>
           <td>
             <fa-icon
               class="mr-3"
               [icon]="fonts.faPencilAlt"
               (click)="openPayment(modalType.EDIT, payment)"
+              (keyup)="openPayment(modalType.EDIT, payment)"
               role="button"
               aria-labelledby="Editar pagamento"
+              tabindex="0"
             ></fa-icon>
             <fa-icon
               [icon]="fonts.faTimesCircle"
               (click)="deletePayment(payment)"
+              (keyup)="deletePayment(payment)"
               role="button"
               aria-labelledby="Excluir pagamento"
+              tabindex="0"
             ></fa-icon>
           </td>
         </tr>
       </tbody>
+      
     </table>
+
+    <ng-template #noPayment>
+      <app-alert [alerts]="[{type: 'warning', message: 'Nenhum pagamento encontrado'}]"></app-alert>
+    </ng-template>
 
     <!-- fim tabela meus pagamentos -->
   </div>

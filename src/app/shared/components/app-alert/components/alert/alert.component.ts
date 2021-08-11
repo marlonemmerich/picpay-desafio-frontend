@@ -10,12 +10,9 @@ enum AlertType {
 
 @Component({
   selector: 'app-alert',
-  templateUrl: './alert.component.html',
-  styleUrls: ['./alert.component.scss']
+  templateUrl: './alert.component.html'
 })
 export class AlertComponent implements OnInit {
-  public showAlert: boolean = false;
-
   @Input() alerts: Alert[] = []
   @Input() dismissible: boolean = false;
 
@@ -52,8 +49,6 @@ export class AlertComponent implements OnInit {
    * @param timeout tempo para fechar o alert (ex: 1000 = 1s)
    */
   private show(message: string, type: string, timeout?: number) {
-    this.showAlert = true;
-
     const alert: Alert = {
       message,
       type,

@@ -15,6 +15,12 @@ const APIURL = `${environment.apiUrl}/account`;
 export class AuthService {
   constructor(private http: HttpClient, private userService: UserService) {}
  
+  /**
+   * Autentica o usuário e retorna sucesso 
+   * ou erro em caso de usuário não existente ou senha inválida
+   * @param user account
+   * @returns observable HttpResponde
+   */
   public authenticate(user): Observable<HttpResponse<Account[]>> {
     return this.http
       .get<Account>(`${APIURL}?email=${user.email}`)
@@ -29,6 +35,10 @@ export class AuthService {
         }),
         map((account) => {
           if (account && account.password === user.password){
+            /** 
+             * Grava na localStorage o id no lugar do 
+             * Token que seria o certo em uma aplicação real
+             */
             this.userService.setSession(account.id);
             return account;
           } else {

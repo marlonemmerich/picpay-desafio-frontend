@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { SearchComponent } from './components/search/search.component';
 
-
-
 @NgModule({
   declarations: [
     SearchComponent

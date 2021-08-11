@@ -1,5 +1,5 @@
 <p *ngFor="let alert of alerts">
-    <ngb-alert *ngIf="showAlert" [type]="alert.type" [dismissible]="dismissible" (closed)="close(alert)">
+    <ngb-alert [type]="alert.type" [dismissible]="dismissible" (closed)="close(alert)">
         <div [innerHtml]="alert.message"></div>
     </ngb-alert>
 </p>

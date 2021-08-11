@@ -8,8 +8,12 @@ import { AppProfileModule } from './components/app-profile/app-profile.module';
 import { AppSearchModule } from './components/app-search/app-search.module';
 import { AppTableModule } from './components/app-table/app-table.module';
 import { AppAlertModule } from './components/app-alert/app-alert.module';
+import { FilterByUser } from './pipes/filter-by-user.pipe';
 
 @NgModule({
+  declarations: [
+    FilterByUser
+],
   exports: [
     CommonModule,
     AppFormControlsModule,
@@ -18,7 +22,8 @@ import { AppAlertModule } from './components/app-alert/app-alert.module';
     AppProfileModule,
     AppSearchModule,
     AppTableModule,
-    AppAlertModule
+    AppAlertModule,
+    FilterByUser
   ]
 })
 export class SharedModule { }

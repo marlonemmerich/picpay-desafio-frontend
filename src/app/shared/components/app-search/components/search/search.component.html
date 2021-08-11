@@ -1,1 +1,12 @@
-<p>search works!</p>
+<div class="text-center">
+    <form>
+        <input 
+        class="form-control"
+            type="search" 
+            placeholder="Pesquisar por usuário" 
+            autofocus
+            (keyup)="debounce.next($event.target.value)"
+            [value]="value"
+            >
+    </form>
+</div>

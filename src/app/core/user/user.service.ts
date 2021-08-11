@@ -18,6 +18,10 @@ export class UserService {
   constructor(private http: HttpClient, private router: Router) {}
 
   public setSession(idUser) {
+    /** 
+     * Grava no localStorage o id no lugar do 
+     * Token que seria o certo em uma aplicação real
+     */
     window.localStorage.setItem(KEY, idUser);
   }
 
@@ -34,6 +38,10 @@ export class UserService {
     return !!this.getSession();
   }
 
+  /** 
+   * Pega o id no localStorage, faz a requisição 
+   * no backend para pegar o usuário e devolver no observable
+   */
   public getUser(): Observable<Account> {
     const idUser = window.localStorage.getItem(KEY);
     return this.http.get<Account>(`${APIURL}?id=${idUser}`).pipe(
