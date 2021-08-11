@@ -1,22 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { InputValueComponent } from './components/input-value/input-value.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { InputTextComponent } from './components/input-text/input-text.component';
 import { AppInputMessageModule } from '../app-input-message/app-input-message.module';
 
 @NgModule({
-  declarations: [
-    InputTextComponent
-  ],
+  declarations: [InputValueComponent],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    AppInputMessageModule,
+    AppInputMessageModule
   ],
-  exports: [
-    InputTextComponent
-  ]
+  exports: [InputValueComponent],
 })
-export class AppInputTextModule { }
+export class AppInputValueModule {}

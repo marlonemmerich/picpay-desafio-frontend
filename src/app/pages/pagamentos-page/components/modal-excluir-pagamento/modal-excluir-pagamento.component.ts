@@ -25,6 +25,10 @@ export class ModalExcluirPagamentoComponent implements OnInit {
     this.initModalConfig();
   }
 
+  /**
+   * emite um evento enviando o id do pagamento 
+   * para solicitar a exclusão do pagamento
+   */
   public callDeletePayment(){
     this.excluirPagamentoEmmiter.emit(this.payment?.id);
     this.modal.dismiss();

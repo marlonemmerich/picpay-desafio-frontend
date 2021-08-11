@@ -15,15 +15,15 @@ export class PaymentService {
         return this.http.get<Payment[]>(API_URL)
     }
 
-    deletePayments(idPayment): Observable<Payment>{
-        return this.http.delete<Payment>(`${API_URL}?id=${idPayment}`)
+    deletePayments(idPayment: number): Observable<Payment>{
+        return this.http.delete<Payment>(`${API_URL}/${idPayment.toString()}`)
     }
 
-    addPayments(payment): Observable<Payment>{
+    addPayments(payment: Payment): Observable<Payment>{
         return this.http.post<Payment>(API_URL, payment)
     }
 
-    editPayments(payment): Observable<Payment>{
-        return this.http.post<Payment>(`${API_URL}?id=${payment.id}`, payment)
+    editPayments(idPayment: number, payment: Payment): Observable<Payment>{
+        return this.http.post<Payment>(`${API_URL}/${idPayment.toString()}`, payment)
     }
 }

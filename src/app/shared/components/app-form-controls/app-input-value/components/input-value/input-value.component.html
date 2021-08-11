@@ -1,0 +1,24 @@
+<div [formGroup]="formGroup">
+  <label for="codinep" class="form-label">
+    {{ title }} <small *ngIf="isOptional">(Opcional)</small>
+  </label>
+  <div class="input-group">
+    <div class="input-group-prepend">
+      <span class="input-group-text">R$</span>
+    </div>
+    <input
+      [formControlName]="controlName"
+      [name]="controlName"
+      type="text"
+      class="form-control"
+      [ngClass]="{ 'is-invalid': validation.isValid(formControl) }"
+      [id]="controlName"
+      placeholder="{{ placeholder }}"
+    />
+  </div>
+  <app-input-message
+    *ngIf="validation.hasErrorValidator(formControl, 'required')"
+    message="Campo Obrigatório"
+    type="danger"
+  ></app-input-message>
+</div>

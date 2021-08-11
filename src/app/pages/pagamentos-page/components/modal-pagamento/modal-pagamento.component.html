@@ -4,31 +4,30 @@
 
     <!-- form adicionar pagamento -->
 
-    <form [formGroup]="newPaymentForm" (submit)="savePayment()">
+    <form autocomplete="off" [formGroup]="newPaymentForm" (submit)="savePayment()">
       <div class="form-row">
         <div class="form-group col-12 col-md-6">
           <app-input-text
             title="Usuário"
-            controlName="username"
+            controlName="name"
             [formGroup]="newPaymentForm"
             placeholder="Informe o usuário"
           ></app-input-text>
         </div>
         <div class="form-group col-12 col-md-6">
-          <app-input-text
+          <app-input-value
             title="Valor"
             controlName="value"
             [formGroup]="newPaymentForm"
             placeholder="Informe o valor"
-          ></app-input-text>
+          ></app-input-value>
         </div>
         <div class="form-group col-12 col-md-6">
-          <app-input-text
+          <app-input-date
             title="Data"
             controlName="date"
             [formGroup]="newPaymentForm"
-            placeholder="Informe a data"
-          ></app-input-text>
+          ></app-input-date>
         </div>
         <div class="form-group col-12 col-md-6">
           <app-input-text
@@ -45,7 +44,7 @@
       
       <footer class="d-flex justify-content-end mt-4">
           <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
-          <button type="submit" class="btn btn-primary ml-2" (click)="savePayment()">Salvar</button>
+          <button type="submit" class="btn btn-primary ml-2">Salvar</button>
       </footer>
     </form>
 

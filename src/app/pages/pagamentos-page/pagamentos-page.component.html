@@ -63,7 +63,10 @@
 
 <!-- modal novo pagamento -->
 
-<app-modal-pagamento #modalNewPayment></app-modal-pagamento>
+<app-modal-pagamento 
+  #modalNewPayment
+  (pagamentoEmmiter)="receiverPagamentoEmmiter($event)"
+></app-modal-pagamento>
 
 <!-- fim modal novo pagamento -->
 

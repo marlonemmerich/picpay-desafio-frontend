@@ -1,0 +1,35 @@
+<div [formGroup]="formGroup">
+    <label [for]="controlName" class="form-label">{{ title }}</label>
+    <div class="input-group">
+      <input
+        class="form-control"
+        [ngClass]="{ 'is-invalid': validation.isValid(formControl) }"
+        [id]="controlName"
+        [name]="controlName"
+        [formControlName]="controlName"
+        placeholder="Informe a data"
+        name="dp"
+        ngbDatepicker
+        #datainicio="ngbDatepicker"
+      />
+      <div class="input-group-prepend">
+        <button class="btn btn-primary" (click)="datainicio.toggle()" type="button">
+          <!--<fa-icon [icon]="faCalendarWeek"></fa-icon>-->
+        </button>
+      </div>
+    </div>
+    <app-input-message
+      *ngIf="validation.hasErrorValidator(formControl, 'required')"
+      message="Campo Obrigatório"
+      type="danger"
+    ></app-input-message>
+    <app-input-message
+      *ngIf="dateValidator(formControl)"
+      message="Data Inválida"
+      type="danger"
+    ></app-input-message>
+  </div>
+   
+   
+  
+  
