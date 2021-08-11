@@ -15,7 +15,7 @@ const APIURL = `${environment.apiUrl}/account`;
 export class AuthService {
   constructor(private http: HttpClient, private userService: UserService) {}
  
-  authenticate(user): Observable<HttpResponse<Account[]>> {
+  public authenticate(user): Observable<HttpResponse<Account[]>> {
     return this.http
       .get<Account>(`${APIURL}?email=${user.email}`)
       .pipe(
@@ -23,7 +23,7 @@ export class AuthService {
           if(accounts.length){
             return accounts[0]
           } else {
-            throw new ErrorEvent('accountError', {message: 'Usuário não cadastrado!'})
+            throw new ErrorEvent('notFound', {message: 'Usuário não cadastrado!'})
           }
           
         }),
@@ -32,7 +32,7 @@ export class AuthService {
             this.userService.setSession(account.id);
             return account;
           } else {
-            throw new ErrorEvent('passwordError', {message: 'Usuário ou Senha inválidos!'})
+            throw new ErrorEvent('accountError', {message: 'Usuário ou Senha inválidos!'})
           }
         })
       );

@@ -1,4 +1,5 @@
 export enum Rotas {
     PAGAMENTOS = 'pagamentos',
-    LOGIN = 'login'
+    LOGIN = 'login',
+    PERFIL = 'perfil'
 }

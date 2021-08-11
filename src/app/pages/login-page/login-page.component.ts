@@ -29,7 +29,7 @@ export class LoginPageComponent implements OnInit {
   ngOnInit(): void {
     /**
      * guarda o path de onde o usuário está vindo 
-     * para para redirecionar de volta após login
+     * para redirecionar de volta após login
      */
     this.route.queryParams.subscribe(params => {
       this.fromUrl = params.fromUrl;
@@ -43,7 +43,7 @@ export class LoginPageComponent implements OnInit {
 
   /**
    * autentica o login do usuário e redireciona para 
-   * página de pagamentos ou a rota que tentou acessar anteriormente
+   * página de pagamentos ou rota que tentou acessar anteriormente
    */
   public login() {
     if (this.loginForm.valid && !this.loginForm.pending) {

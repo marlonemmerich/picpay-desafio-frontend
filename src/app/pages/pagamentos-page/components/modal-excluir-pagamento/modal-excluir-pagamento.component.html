@@ -1,0 +1,15 @@
+<app-modal [modalConfig]="modalConfig" #modal>
+  <div modal-body>
+    <h3 class="mb-2" tabindex="0">Excluir pagamento</h3>
+    <p tabindex="0">Deseja realmente excluir o pagamento abaixo?</p>
+    <div class="mt-4">
+        <p tabindex="0"><strong>Usuário:</strong> {{ payment?.name }}</p>
+        <p tabindex="0"><strong>Data:</strong> {{ payment?.date | date: 'dd/MM/yyyy' }}</p>
+        <p tabindex="0"><strong>Valor:</strong> {{ payment?.value }}</p>
+    </div>
+    <footer class="d-flex justify-content-end mt-4">
+      <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
+      <button type="button" class="btn btn-primary ml-2" (click)="callDeletePayment()">Excluir</button>
+    </footer>
+  </div>
+</app-modal>

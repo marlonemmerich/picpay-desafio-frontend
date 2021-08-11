@@ -1,4 +1,4 @@
-<header class="mt-header">
+<header>
     <nav class="navbar fixed-top flex-row justify-content-between align-items-center">
 
       <div class="d-flex justify-content-start w-100">
@@ -13,11 +13,10 @@
           *ngIf="user$ | async as user"
         >
           <picture>
-            <source srcset="{{ user.urlFoto }}" type="image/svg+xml" />
             <img
-              src="{{ user.urlFoto }}"
+              src="../../../assets/imgs/avatar_perfil.png"
               class="navbar__user--image"
-              alt="Foto {{ user.name }}"
+              alt="Foto de {{ user.name }}"
             />
           </picture>
           <div

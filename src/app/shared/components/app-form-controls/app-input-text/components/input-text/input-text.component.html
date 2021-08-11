@@ -9,7 +9,7 @@
       class="form-control"
       [ngClass]="{ 'is-invalid': validation.isValid(formControl) }"
       [id]="controlName"
-      placeholder="{{ title }}"
+      placeholder="{{placeholder}}"
     />
     <app-input-message
       *ngIf="validation.hasErrorValidator(formControl, 'required')"

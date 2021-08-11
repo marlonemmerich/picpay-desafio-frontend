@@ -1,4 +1,4 @@
-export interface Task {
+export interface Payment {
     id: boolean,
     name: string,
     username: string,

@@ -16,6 +16,10 @@ const routes: Routes = [
     {
         path: Rotas.LOGIN,
         loadChildren: () => import('./pages/login-page/login-page.module').then((m) => m.LoginPageModule),
+    },
+    {
+        path: Rotas.PERFIL,
+        loadChildren: () => import('./pages/perfil-page/perfil-page.module').then((m) => m.PerfilPageModule),
     }
 ]
 

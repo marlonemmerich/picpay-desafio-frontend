@@ -16,6 +16,7 @@ export class InputTextComponent implements OnInit {
   @Input() title: string;
   @Input() type: string = 'text';
   @Input() isOptional: boolean = false;
+  @Input() placeholder: string = ''
  
   constructor(public validation: InputValidationService) {}
  

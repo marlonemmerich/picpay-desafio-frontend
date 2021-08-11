@@ -41,7 +41,7 @@ export class UserService {
         if (accounts.length) {
           return accounts[0];
         } else {
-          throw new ErrorEvent('accountError', {
+          throw new ErrorEvent('notFound', {
             message: 'Usuário não encontrado!',
           });
         }

@@ -14,21 +14,11 @@
     padding: $spacing-squish-md;
 }
 
-.btn-small {
-    @include btn;
+.btn-sm {
     border-radius: $border-radius-lg;
     font-size: 12px;
     line-height: 14px;
     padding: $spacing-squish-xs;
-}
-
-.btn-filter {
-    @include btn;
-    border-radius: $border-radius-lg;
-    font-size: 12px;
-    line-height: 14px;
-    padding: $spacing-squish-xs;
-    font-weight: 700;
 }
 
 .btn-primary {
@@ -39,4 +29,12 @@
 .btn-secondary {
     color: $color-heading;
     background-color: $color-gray-2;
+    border-color: transparent;
+}
+
+.btn-action {
+    color: $color-heading;
+    background-color: $color-gray;
+    font-weight: 600;
+    text-transform: capitalize;
 }

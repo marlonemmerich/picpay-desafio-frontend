@@ -1,0 +1,55 @@
+<app-modal [modalConfig]="modalConfig" #modal>
+  <div modal-body>
+    <h3 class="mb-4">Adicionar pagamento</h3>
+
+    <!-- form adicionar pagamento -->
+
+    <form [formGroup]="newPaymentForm" (submit)="savePayment()">
+      <div class="form-row">
+        <div class="form-group col-12 col-md-6">
+          <app-input-text
+            title="Usuário"
+            controlName="username"
+            [formGroup]="newPaymentForm"
+            placeholder="Informe o usuário"
+          ></app-input-text>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <app-input-text
+            title="Valor"
+            controlName="value"
+            [formGroup]="newPaymentForm"
+            placeholder="Informe o valor"
+          ></app-input-text>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <app-input-text
+            title="Data"
+            controlName="date"
+            [formGroup]="newPaymentForm"
+            placeholder="Informe a data"
+          ></app-input-text>
+        </div>
+        <div class="form-group col-12 col-md-6">
+          <app-input-text
+            title="Título"
+            [isOptional]="true"
+            controlName="title"
+            [formGroup]="newPaymentForm"
+            placeholder="Informe o título"
+          ></app-input-text>
+        </div>
+      </div>
+
+      <app-alert #alertForm></app-alert>
+      
+      <footer class="d-flex justify-content-end mt-4">
+          <button type="button" class="btn btn-secondary" (click)="close()">Cancelar</button>
+          <button type="submit" class="btn btn-primary ml-2" (click)="savePayment()">Salvar</button>
+      </footer>
+    </form>
+
+    <!-- fim form adicionar pagamento -->
+
+  </div>
+</app-modal>
