@@ -1,5 +1,5 @@
 export interface Payment {
-    id?: boolean,
+    id?: number,
     name: string,
     username: string,
     title: string,

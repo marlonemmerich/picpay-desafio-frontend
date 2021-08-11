@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup } from '@angular/forms';
+import { faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
 
 import { InputValidationService } from 'src/app/shared/validations/input-validation/input-validation.service';
 
@@ -9,7 +10,7 @@ import { InputValidationService } from 'src/app/shared/validations/input-validat
 })
 export class InputDateComponent implements OnInit {
 
-  //faCalendarWeek = faCalendarWeek;
+  faCalendarWeek = faCalendarWeek;
  
   @Input() formGroup: FormGroup;
   @Input() controlName: string;

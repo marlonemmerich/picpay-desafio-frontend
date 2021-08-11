@@ -9,8 +9,7 @@ enum MessageType {
 
 @Component({
   selector: 'app-input-message',
-  templateUrl: './input-message.component.html',
-  styleUrls: ['./input-message.component.scss']
+  templateUrl: './input-message.component.html'
 })
 export class InputMessageComponent implements OnInit {
 

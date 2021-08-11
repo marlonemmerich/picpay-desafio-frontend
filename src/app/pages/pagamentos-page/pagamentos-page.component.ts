@@ -1,11 +1,17 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { faTimesCircle, faPencilAlt, faFilter } from '@fortawesome/free-solid-svg-icons';
 import { Observable } from 'rxjs';
 
 import { Payment } from 'src/app/shared/interfaces/payment';
 import { ModalExcluirPagamentoComponent } from './components/modal-excluir-pagamento/modal-excluir-pagamento.component';
 import { ModalPagamentoComponent } from './components/modal-pagamento/modal-pagamento.component';
 import { PaymentService } from './services/payment.service';
+
+enum ModalType {
+  NEW = 'new',
+  EDIT = 'edit'
+}
 
 @Component({
   selector: 'app-pagamentos-page',
@@ -14,11 +20,18 @@ import { PaymentService } from './services/payment.service';
   providers: [DatePipe],
 })
 export class PagamentosPageComponent implements OnInit {
-  @ViewChild('modalNewPayment') modalNewPayment: ModalPagamentoComponent;
+  fonts = {
+    faTimesCircle,
+    faPencilAlt,
+    faFilter
+  }
+  
+  @ViewChild('modalPayment') modalPayment: ModalPagamentoComponent;
   @ViewChild('modalDeletePayment')
   modalDeletePayment: ModalExcluirPagamentoComponent;
 
   payments$: Observable<Payment[]>;
+  public modalType = ModalType
 
   constructor(private paymentService: PaymentService) {}
 
@@ -26,8 +39,8 @@ export class PagamentosPageComponent implements OnInit {
     this.payments$ = this.paymentService.getPayments();
   }
 
-  public newPayment() {
-    this.modalNewPayment.open();
+  public openPayment(type: ModalType, payment: Payment = null) {
+    this.modalPayment.open(type === ModalType.EDIT ? true : false, payment);
   }
 
   public deletePayment(payment: Payment) {

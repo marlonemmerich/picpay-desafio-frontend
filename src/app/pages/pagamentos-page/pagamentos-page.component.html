@@ -1,70 +1,88 @@
 <section id="pagamentos" class="mt-header mb-5 pt-5">
-    <h1 tabindex="0">Meus pagamentos</h1>
+  <h1 tabindex="0">Meus pagamentos</h1>
 
-    <!-- botão adicionar pagamento -->
-    
-    <div class="d-flex flex-row-reverse">
-        <button class="btn btn-primary" (click)="newPayment()">Adicionar Pagamento</button>
+  <!-- botão adicionar pagamento -->
+
+  <div class="d-flex flex-row-reverse">
+    <button class="btn btn-primary" (click)="openPayment(modalType.NEW)">
+      Adicionar Pagamento
+    </button>
+  </div>
+
+  <!-- fim botão adicionar pagamento -->
+
+  <div class="wrapper mt-3">
+    <!-- ações do topo da tabela (filtro, pesquisa, paginação) -->
+
+    <div class="table__actions d-flex justify-content-between mb-4">
+      <div>
+        <input type="text" placeholder="Pesquisar por usuário" />
+        <button class="ml-2 btn btn-sm btn-action">
+          <fa-icon class="mr-2" [icon]="fonts.faFilter"></fa-icon>Filtrar
+        </button>
+      </div>
+      <div>
+        <div>Exibir | Paginação</div>
+      </div>
     </div>
 
-    <!-- fim botão adicionar pagamento -->
+    <!-- fim ações do topo da tabela (filtro, pesquisa, paginação) -->
 
-    <div class="wrapper mt-3">
+    <!-- tabela meus pagamentos -->
 
-        <!-- ações do topo da tabela (filtro, pesquisa, paginação) -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Usuário</th>
+          <th scope="col">Título</th>
+          <th scope="col">Data</th>
+          <th scope="col">Valor</th>
+          <th scope="col">Status</th>
+          <th scope="col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments$ | async">
+          <td>
+            {{ payment?.name }}
+            <br />
+            <small>@{{ payment?.username }}</small>
+          </td>
+          <td>{{ payment?.title }}</td>
+          <td>
+            {{ payment?.date | date: 'd MMM y' }}
+            <br />
+            <small>{{ payment?.date | date: 'shortTime' }}</small>
+          </td>
+          <td>{{ payment?.value | currency: 'BRL' }}</td>
+          <td>{{ getStatus(payment?.isPayed) }}</td>
+          <td>
+            <fa-icon
+              class="mr-3"
+              [icon]="fonts.faPencilAlt"
+              (click)="openPayment(modalType.EDIT, payment)"
+              role="button"
+              aria-labelledby="Editar pagamento"
+            ></fa-icon>
+            <fa-icon
+              [icon]="fonts.faTimesCircle"
+              (click)="deletePayment(payment)"
+              role="button"
+              aria-labelledby="Excluir pagamento"
+            ></fa-icon>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-        <div class="table__actions d-flex justify-content-between mb-4">
-            <div>
-                <input type="text" placeholder="Pesquisar por usuário">
-                <button class="ml-2 btn btn-sm btn-action ">Filtrar</button>
-            </div>
-            <div>
-                <div>Exibir | Paginação</div>
-            </div>
-        </div>
-
-        <!-- fim ações do topo da tabela (filtro, pesquisa, paginação) -->
-
-        <!-- tabela meus pagamentos -->
-
-        <table class="table table-striped">
-            <thead>
-              <tr>
-                <th scope="col">Usuário</th>
-                <th scope="col">Título</th>
-                <th scope="col">Data</th>
-                <th scope="col">Valor</th>
-                <th scope="col">Status</th>
-                <th scope="col">Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let payment of payments$ | async">
-                <td>{{ payment?.name }}
-                  <br />
-                  <small>@{{ payment?.username }}</small>
-                </td>
-                <td>{{ payment?.title }}</td>
-                <td>{{ payment?.date | date: 'd MMM y' }}
-                  <br />
-                  <small>{{ payment?.date | date: 'shortTime' }}</small>
-                </td>
-                <td>{{ payment?.value | currency: 'BRL' }}</td>
-                <td>{{ getStatus(payment?.isPayed) }}</td>
-                <td>Editar | <button (click)="deletePayment(payment)">Excluir</button></td>
-              </tr>
-            </tbody>
-          </table>
-
-          <!-- fim tabela meus pagamentos -->
-
-    </div>
+    <!-- fim tabela meus pagamentos -->
+  </div>
 </section>
 
 <!-- modal novo pagamento -->
 
-<app-modal-pagamento 
-  #modalNewPayment
+<app-modal-pagamento
+  #modalPayment
   (pagamentoEmmiter)="receiverPagamentoEmmiter($event)"
 ></app-modal-pagamento>
 
@@ -72,7 +90,7 @@
 
 <!-- modal excluir pagamento -->
 
-<app-modal-excluir-pagamento 
+<app-modal-excluir-pagamento
   #modalDeletePayment
   (excluirPagamentoEmmiter)="receiverExcluirPagamentoEmmiter($event)"
 ></app-modal-excluir-pagamento>

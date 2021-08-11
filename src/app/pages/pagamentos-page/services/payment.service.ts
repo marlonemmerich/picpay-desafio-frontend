@@ -24,6 +24,6 @@ export class PaymentService {
     }
 
     editPayments(idPayment: number, payment: Payment): Observable<Payment>{
-        return this.http.post<Payment>(`${API_URL}/${idPayment.toString()}`, payment)
+        return this.http.patch<Payment>(`${API_URL}/${idPayment.toString()}`, payment)
     }
 }

@@ -7,6 +7,7 @@ import { PagamentosPageComponent } from './pagamentos-page.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ModalExcluirPagamentoComponent } from './components/modal-excluir-pagamento/modal-excluir-pagamento.component';
 import { ModalPagamentoComponent } from './components/modal-pagamento/modal-pagamento.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [PagamentosPageComponent, ModalPagamentoComponent, ModalExcluirPagamentoComponent],
@@ -15,7 +16,8 @@ import { ModalPagamentoComponent } from './components/modal-pagamento/modal-paga
     PagamentosPageRoutingModule,
     SharedModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FontAwesomeModule
   ]
 })
 export class PagamentosPageModule { }

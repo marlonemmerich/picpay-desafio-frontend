@@ -18,7 +18,7 @@ registerLocaleData(localePt);
     BrowserModule,
     AppRoutingModule,
     CoreModule,
-    HeaderModule
+    HeaderModule,
   ],
   providers: [{
     provide: LOCALE_ID, 

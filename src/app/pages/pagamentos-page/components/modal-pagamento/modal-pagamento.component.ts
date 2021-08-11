@@ -28,6 +28,8 @@ export class ModalPagamentoComponent implements OnInit {
 
   public modalConfig: ModalConfig;
   public newPaymentForm: FormGroup;
+  public isEdit: boolean = false;
+  private idToEdit!: number;
 
   constructor(
     public validation: InputValidationService,
@@ -46,8 +48,19 @@ export class ModalPagamentoComponent implements OnInit {
     this.initModalConfig();
   }
 
-  public open() {
+  public open(isEdit: boolean, payment?: Payment) {
+    this.isEdit = isEdit;
     this.newPaymentForm.reset();
+
+    /**
+     * Caso seja para editar chama método
+     * para carregar dados no form
+     */
+    if (payment && isEdit === true) {
+      this.idToEdit = payment.id;
+      this.fillPaymentForm(payment);
+    }
+
     this.modal.open();
   }
 
@@ -56,37 +69,88 @@ export class ModalPagamentoComponent implements OnInit {
   }
 
   /**
-   * Verifica se o form está válido, estando válido 
-   * edita ou salva o pagamento emitindo um evento 
+   * Verifica se o form está válido, estando válido
+   * edita ou salva o pagamento emitindo um evento
    * para o componente filho, em caso de erro exibe um alerta.
    */
   public savePayment() {
     if (this.newPaymentForm.valid && !this.newPaymentForm.pending) {
       this.alertForm.clear();
+
       const payment: Payment = {
         name: this.newPaymentForm.get('name').value,
-        username: CreateUsername.transformNameToUsername(this.newPaymentForm.get('name').value),
+        username: CreateUsername.transformNameToUsername(
+          this.newPaymentForm.get('name').value
+        ),
         value: parseInt(this.newPaymentForm.get('value').value),
-        date: FormatDate.formatNgbDateToDate(this.newPaymentForm.get('date').value),
+        date: FormatDate.formatNgbDateToDate(
+          this.newPaymentForm.get('date').value
+        ),
         title: this.newPaymentForm.get('title').value,
         isPayed: false,
-      }
+      };
       console.log(payment);
 
-      // this.paymentService.addPayments(payment).subscribe(
-      //   (res) => {
-      //     console.log(res);
-      //     this.pagamentoEmmiter.emit('Pagamento salvo com sucesso!')
-      //     this.modal.dismiss()
-      //   },
-      //   (error) => {
-      //     console.log(error)
-      //     this.alertForm.danger('Algo inesperado aconteceu, tente novamente em alguns minutos!');
-      //   }
-      // );
+      this.isEdit
+        ? this.callAddPayments(payment)
+        : this.callEditPayments(payment);
     } else {
       this.validation.validateAllFormFields(this.newPaymentForm);
     }
+  }
+
+  /**
+   * Request POST para adicionar pagamento no backend
+   * @param payment pagamento(tasks)
+   */
+  private callAddPayments(payment: Payment) {
+    this.paymentService.addPayments(payment).subscribe(
+      (res) => {
+        console.log(res);
+        this.pagamentoEmmiter.emit('Pagamento salvo com sucesso!');
+        this.modal.dismiss();
+      },
+      (error) => {
+        console.log(error);
+        this.alertForm.danger(
+          'Algo inesperado aconteceu, tente novamente em alguns minutos!'
+        );
+      }
+    );
+  }
+
+  /**
+   * Request PATCH para adicionar pagamento no backend
+   * @param payment pagamento(tasks)
+   */
+  private callEditPayments(payment: Payment) {
+    this.paymentService.editPayments(this.idToEdit, payment).subscribe(
+      (res) => {
+        console.log(res);
+        this.pagamentoEmmiter.emit('Pagamento alterado com sucesso!');
+        this.modal.dismiss();
+      },
+      (error) => {
+        console.log(error);
+        this.alertForm.danger(
+          'Algo inesperado aconteceu, tente novamente em alguns minutos!'
+        );
+      }
+    );
+  }
+
+  /**
+   * Preenche o formulário do modal com o pagamento recebido
+   * @param payment pagamento(tasks)
+   */
+  private fillPaymentForm(payment: Payment) {
+    const date = FormatDate.formatStringToNgbDate(payment.date);
+    this.newPaymentForm.patchValue({
+      name: payment.name,
+      value: payment.value,
+      date: date,
+      title: payment.title,
+    });
   }
 
   private initModalConfig() {
