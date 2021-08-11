@@ -12,7 +12,7 @@ import { AppInputDateModule } from './app-input-date/app-input-date.module';
     AppInputTextModule,
     AppInputMessageModule,
     AppInputValueModule,
-    AppInputDateModule
+    AppInputDateModule,
   ]
 })
 export class AppFormControlsModule { }

@@ -3,9 +3,6 @@
     {{ title }} <small *ngIf="isOptional">(Opcional)</small>
   </label>
   <div class="input-group">
-    <div class="input-group-prepend">
-      <span class="input-group-text">R$</span>
-    </div>
     <input
       [formControlName]="controlName"
       [name]="controlName"
@@ -14,6 +11,9 @@
       [ngClass]="{ 'is-invalid': validation.isValid(formControl) }"
       [id]="controlName"
       placeholder="{{ placeholder }}"
+      currencyMask
+      [options]="{ prefix: 'R$ ', thousands: ',', precision: 2 }"
+      min="0"
     />
   </div>
   <app-input-message

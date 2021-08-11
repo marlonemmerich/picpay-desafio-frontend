@@ -82,7 +82,7 @@ export class ModalPagamentoComponent implements OnInit {
         username: CreateUsername.transformNameToUsername(
           this.newPaymentForm.get('name').value
         ),
-        value: parseInt(this.newPaymentForm.get('value').value),
+        value: this.newPaymentForm.get('value').value,
         date: FormatDate.formatNgbDateToDate(
           this.newPaymentForm.get('date').value
         ),
@@ -94,6 +94,7 @@ export class ModalPagamentoComponent implements OnInit {
       this.isEdit
         ? this.callAddPayments(payment)
         : this.callEditPayments(payment);
+
     } else {
       this.validation.validateAllFormFields(this.newPaymentForm);
     }
