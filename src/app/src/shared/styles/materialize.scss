@@ -55,3 +55,15 @@ $font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Montserrat, Oxygen-S
 .secondary-color {
     color: $secondary-color;
 }
+
+.material-icons {
+    display: inline-flex;
+    vertical-align: top;
+}
+
+@media #{$small-and-down} {
+    .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
