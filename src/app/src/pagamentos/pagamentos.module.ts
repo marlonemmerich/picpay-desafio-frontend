@@ -5,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'itens',
+    path: 'pagamentos',
     component: ListComponent
   }
 ];
@@ -19,4 +19,4 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ]
 })
-export class ItensModule { }
+export class PagamentosModule { }

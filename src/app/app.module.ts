@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './src/core/core.module';
 import { SharedModule } from './src/shared/shared.module';
 import { AuthModule } from './src/auth/auth.module';
-import { ItensModule } from './src/itens/itens.module';
+import { PagamentosModule } from './src/pagamentos/pagamentos.module';
 import { RouterModule } from '@angular/router';
 import { LoadingComponent } from './src/shared/components/loading/loading.component';
 
@@ -19,7 +19,7 @@ import { LoadingComponent } from './src/shared/components/loading/loading.compon
     CoreModule,
     SharedModule,
     AuthModule,
-    ItensModule,
+    PagamentosModule,
     RouterModule,
   ],
   providers: [],
