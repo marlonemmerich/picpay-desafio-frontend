@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css';
-import { ModalPagamentoComponent } from 'src/app/pagamentos/components/modal-pagamento/modal-pagamento.component';
 
 @Component({
   selector: 'app-list',

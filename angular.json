@@ -30,7 +30,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/app/src/shared/styles/styles.scss"
+              "src/app/shared/styles/styles.scss"
             ],
             "scripts": [
               "node_modules/materialize-css/dist/js/materialize.js"
@@ -102,7 +102,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/app/src/shared/styles/styles.scss"
+              "src/app/shared/styles/styles.scss"
             ],
             "scripts": []
           }

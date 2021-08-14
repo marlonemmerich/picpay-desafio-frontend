@@ -3,6 +3,7 @@ const TIMEPICK_OPTIONS = {
     i18n: {
         cancel: 'Cancelar',
         clear: 'Limpar',
+        done: 'Ok'
     }
 };
 export default TIMEPICK_OPTIONS;

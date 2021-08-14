@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ModalInterface } from 'src/app/shared/interfaces/modal-interface';
 import * as M from 'materialize-css';
-import DATEPICK_OPTIONS from 'src/app/src/shared/consts/datepick.const';
-import TIMEPICK_OPTIONS from 'src/app/src/shared/consts/timepick.const';
-import MODAL_OPTIONS from 'src/app/src/shared/consts/modal.const';
+import DATEPICK_OPTIONS from '../../../shared/consts/datepick.const';
+import TIMEPICK_OPTIONS from '../../../shared/consts/timepick.const';
+import MODAL_OPTIONS from '../../../shared/consts/modal.const';
 
 @Component({
   selector: 'app-modal-pagamento',
