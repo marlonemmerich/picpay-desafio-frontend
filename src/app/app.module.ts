@@ -7,12 +7,14 @@ import { SharedModule } from './shared/shared.module';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { AuthModule } from './auth/auth.module';
 import { PagamentosModule } from './pagamentos/pagamentos.module';
+import { HeaderComponent } from './shared/components/header/header.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoadingComponent,
+    HeaderComponent,
    ],
   imports: [
     SharedModule,
