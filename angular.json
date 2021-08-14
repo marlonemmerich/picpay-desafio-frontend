@@ -30,9 +30,11 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/app/src/shared/styles/styles.scss"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/materialize-css/dist/js/materialize.js"
+            ],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
@@ -100,7 +102,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/app/src/shared/styles/styles.scss"
             ],
             "scripts": []
           }
