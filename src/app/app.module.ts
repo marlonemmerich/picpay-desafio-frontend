@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { CoreModule } from './src/core/core.module';
 import { SharedModule } from './src/shared/shared.module';
+import { LoadingComponent } from './src/shared/components/loading/loading.component';
 import { AuthModule } from './src/auth/auth.module';
 import { PagamentosModule } from './src/pagamentos/pagamentos.module';
 import { RouterModule } from '@angular/router';
-import { LoadingComponent } from './src/shared/components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -15,9 +15,9 @@ import { LoadingComponent } from './src/shared/components/loading/loading.compon
     LoadingComponent,
    ],
   imports: [
+    SharedModule,
     BrowserModule,
     CoreModule,
-    SharedModule,
     AuthModule,
     PagamentosModule,
     RouterModule,
