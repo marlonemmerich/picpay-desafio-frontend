@@ -7,10 +7,12 @@ import { SharedModule } from './src/shared/shared.module';
 import { AuthModule } from './src/auth/auth.module';
 import { ItensModule } from './src/itens/itens.module';
 import { RouterModule } from '@angular/router';
-@NgModule({
-  declarations: [	
-    AppComponent,
+import { LoadingComponent } from './src/shared/components/loading/loading.component';
 
+@NgModule({
+  declarations: [
+    AppComponent,
+    LoadingComponent,
    ],
   imports: [
     BrowserModule,
@@ -18,9 +20,11 @@ import { RouterModule } from '@angular/router';
     SharedModule,
     AuthModule,
     ItensModule,
-    RouterModule
+    RouterModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }
