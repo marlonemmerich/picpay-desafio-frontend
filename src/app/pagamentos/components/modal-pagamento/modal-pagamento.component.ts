@@ -22,7 +22,7 @@ export class ModalPagamentoComponent implements ModalInterface {
   constructor() { }
 
   show() {
-    this.inicializarInputs();
+    this.inicializarElementos();
     this.modalInstance.open();
   }
 
@@ -30,9 +30,8 @@ export class ModalPagamentoComponent implements ModalInterface {
     this.modalInstance.close();
   }
 
-  inicializarInputs() {
+  inicializarElementos() {
     var elementModal = document.getElementById(this.idModal);
-    console.log('elems', elementModal);
     this.modalInstance = M.Modal.init(elementModal, MODAL_OPTIONS);
 
     var elementDatePick = document.getElementById(this.idDatePick);
