@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ModalPagamentoComponent } from './modal-pagamento.component';
+import { ModalExclusaoComponent } from './modal-exclusao.component';
 
-describe('ModalPagamentoComponent', () => {
-  let component: ModalPagamentoComponent;
-  let fixture: ComponentFixture<ModalPagamentoComponent>;
+describe('ModalExclusaoComponent', () => {
+  let component: ModalExclusaoComponent;
+  let fixture: ComponentFixture<ModalExclusaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ModalPagamentoComponent ]
+      declarations: [ ModalExclusaoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ModalPagamentoComponent);
+    fixture = TestBed.createComponent(ModalExclusaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

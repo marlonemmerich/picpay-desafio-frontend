@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './components/list/list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModalPagamentoComponent } from 'src/app/pagamentos/components/modal-pagamento/modal-pagamento.component';
+import { ModalExclusaoComponent } from './components/modal-exclusao/modal-exclusao.component';
 
 const routes: Routes = [
   {
@@ -14,7 +15,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     ListComponent,
-    ModalPagamentoComponent
+    ModalPagamentoComponent,
+    ModalExclusaoComponent
   ],
   imports: [
     CommonModule,
