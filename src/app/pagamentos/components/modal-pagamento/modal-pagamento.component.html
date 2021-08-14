@@ -1,0 +1,43 @@
+<!-- Modal Structure -->
+<div [id]="idModal" class="modal">
+    <div class="modal-content">
+        <h4>Adicionar pagamento</h4>
+        <div class="row">
+            <div class="col s12">
+                <div class="input-field col s12 m6">
+                    <input id="input-pagamento-usuario" type="text" class="validate">
+                    <label for="input-pagamento-usuario">Usuário</label>
+                    <span id="span-validacao-input-pagamento-usuario" class="helper-text">Obrigatório</span>
+                </div>
+                <div class="input-field col s12 m6">
+                    <input id="input-pagamento-valor" type="text" class="validate">
+                    <label for="input-pagamento-valor">Valor</label>
+                    <span id="span-validacao-input-pagamento-valor" class="helper-text">Obrigatório</span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col s12">
+                <div class="input-field col s12 m4">
+                    <input [id]="idDatePick" type="text" class="validate">
+                    <label [for]="idDatePick">Data</label>
+                    <span id="span-validacao-input-pagamento-data" class="helper-text">Obrigatório</span>
+                </div>
+                <div class="input-field col s12 m4">
+                    <input [id]="idTimePick" type="text" class="validate">
+                    <label [for]="idTimePick">Hora</label>
+                    <span id="span-validacao-input-pagamento-hora" class="helper-text">Obrigatório</span>
+                </div>
+                <div class="input-field col s12 m4">
+                    <input id="input-pagamento-titulo" type="text" class="validate">
+                    <label for="input-pagamento-titulo">Título</label>
+                    <span id="span-validacao-input-pagamento-usuario" class="helper-text">Opcional</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer left">
+        <button class="modal-close btn grey lighten-4 black-text">Cancelar</button>
+        <button class="modal-close btn">Salvar</button>
+    </div>
+</div>

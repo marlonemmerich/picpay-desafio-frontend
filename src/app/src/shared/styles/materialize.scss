@@ -60,3 +60,9 @@
         text-align: center;
     }
 }
+
+.modal-footer {
+    .btn:not(:last-child) {
+        margin-right: 20px;
+    }
+}
