@@ -1,0 +1,16 @@
+.payfriend-header {
+    height: 100vh !important;
+    margin-bottom:0px !important;
+    &__login-box-left {
+        background-color: #F2F2F2;
+        height: 100%;
+    }
+    &__login-box-right {
+        background-color: #FFFFFF;
+        height: 100%;
+
+    }
+    &__image {
+        max-width: 60% !important;
+    }
+}
