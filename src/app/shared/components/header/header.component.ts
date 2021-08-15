@@ -1,6 +1,8 @@
 import { OnInit, AfterViewInit, Component } from '@angular/core';
+import { Router } from '@angular/router';
 import * as M from 'materialize-css';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/auth/models/user.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -12,13 +14,15 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   isUsuarioLogado: boolean;
   subscriptionLogin: Subscription;
+  usuario: User;
 
   idHeader: string = 'header-component';
   idDropDownusuario: string = 'dropdown1';
   private headerInstance;
   private dropDownUsuarioInstance;
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router,
   ) { }
 
   ngOnInit() {
@@ -27,7 +31,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       this.isUsuarioLogado = usuarioLogado;
       if (this.isUsuarioLogado) {
         this.montarComponentesMenu();
-        console.log('???MOUTED?');
+        this.usuario = this.authService.getUserFromStorage();
       }
     });
   }
@@ -41,6 +45,11 @@ export class HeaderComponent implements OnInit, AfterViewInit {
       M.Sidenav.init(document.querySelector('.sidenav'));
       M.Dropdown.init(document.querySelector('.dropdown-trigger'));
     }, 100);
+  }
+
+  deslogar() {
+    this.authService.logout();
+    this.router.navigate(["/login"]);
   }
 
 }

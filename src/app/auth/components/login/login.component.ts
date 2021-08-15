@@ -11,6 +11,7 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
   isSubmitted: boolean = false;
@@ -32,13 +33,8 @@ export class LoginComponent implements OnInit {
       password: [user.password, Validators.required]
     });
   }
-
-  validarCamposForm(): boolean {
-    return true;
-  }
-
+s
   login() {
-    console.log('login', this.formLogin.invalid)
     this.isSubmitted = true;
 
     if (this.formLogin.invalid) {
@@ -52,11 +48,11 @@ export class LoginComponent implements OnInit {
       })
     )
     .subscribe({
-      next: event => {
+      next: () => {
         this.router.navigateByUrl('/pagamentos');
       },
       error: error => {
-        console.log('error', error);
+
         M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro ao tentar se logar', displayLength: 3000, classes: 'red'});
       },
     });

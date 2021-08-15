@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { finalize } from 'rxjs/operators';
-
 import { User } from 'src/app/auth/models/user.model';
 import { ApiService } from 'src/app/shared/services/api.service';
 
@@ -28,14 +26,14 @@ export class AuthService {
     localStorage.removeItem(this.TOKEN_USER);
   }
 
-  login(user: User): Observable<any> {
+  login(user: User): any {
     return new Observable(observer => {
       this.apiService.get(`${this.API_URL}account`)
       .subscribe({
         next: (users: Array<any>) => {
           users.forEach((userServer: any) => {
             if(userServer.email === user.email && userServer.password === user.password) {
-              this.setarUsuarioLocalStorage(user);
+              this.setarUsuarioLocalStorage(userServer);
               this.isUsuarioLogado = true;
               observer.next({msg: 'Usuário autenticado com sucesso!'});
               observer.complete();

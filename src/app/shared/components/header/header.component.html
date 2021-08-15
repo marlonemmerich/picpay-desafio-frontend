@@ -5,8 +5,8 @@
                 <div class="col s12">
                     <a href="#!" data-target="mobile-demo" class="sidenav-trigger show-on-mobile"><i class="material-icons">menu</i></a>
                     <a href="#!" class="brand-logo"><b>Pay</b>Friends</a>
-                    <ul class="right hide-on-med-and-down">
-                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"> <i class="material-icons right">arrow_drop_down</i>Olá, usuário!<i class="material-icons right">account_circle</i></a></li>
+                    <ul class="right hide-on-med-and-down fixed">
+                        <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"> <i class="material-icons right">arrow_drop_down</i>Olá, {{usuario.name}}!<i class="material-icons right">account_circle</i></a></li>
                     </ul>
                 </div>
             </div>
@@ -15,7 +15,7 @@
 
 
     <ul id="dropdown1" class="dropdown-content">
-        <li><a href="#!">Deslogar-se</a></li>
+        <li><a href="#" (click)="deslogar()">Deslogar-se</a></li>
     </ul>
 
     <ul id="mobile-demo" class="sidenav">
@@ -25,12 +25,12 @@
                     <img src="http://placehold.it/640/555">
                 </div>
                 <a href="#!"><i class="material-icons right">account_circle</i></a>
-                <a href="#!"><span class="white-text name">John Doe</span></a>
-                <a href="#!"><span class="white-text email">jdandturk@gmail.com</span></a>
+                <a href="#!"><span class="white-text name">{{usuario.email}}</span></a>
+                <a href="#!"><span class="white-text email">{{usuario.name}}</span></a>
             </div>
         </li>
         <li>
-            <a href="https://github.com/dogfalo/materialize/" target="_blank">Deslogar-se</a>
+            <a href="#" (click)="deslogar()">Deslogar-se</a>
         </li>
     </ul>
 </div>
