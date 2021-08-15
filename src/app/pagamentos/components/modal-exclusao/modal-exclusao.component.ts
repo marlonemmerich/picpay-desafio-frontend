@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import MODAL_OPTIONS from 'src/app/shared/consts/modal.const';
 import { ModalInterface } from 'src/app/shared/interfaces/modal-interface';
 import * as M from 'materialize-css';
+import Pagamento from '../../models/pagamento.model';
 
 @Component({
   selector: 'app-modal-exclusao',

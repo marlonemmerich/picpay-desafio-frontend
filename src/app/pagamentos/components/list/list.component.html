@@ -11,12 +11,12 @@
         <div class="row">
             <div class="col s12 left-align">
                 <div class="col input-field s12 m5 xl3">
-                    <input id="input-pesquisa-usuario" type="password" class="validate">
+                    <input id="input-pesquisa-usuario" type="text" [(ngModel)]="filtro.valorBusca">
                     <label for="input-pesquisa-usuario">Pesquisar por usuário</label>
                 </div>
 
                 <div class="input-field col s12 m5 xl4">
-                    <button class="btn center-align"><i class="material-icons left">filter_alt</i>Filtrar</button>
+                    <button class="btn center-align" (click)="obterPagamentosFiltro()"><i class="material-icons left">filter_alt</i>Filtrar</button>
                 </div>
             </div>
         </div>
@@ -24,63 +24,27 @@
             <table class="responsive-table striped highlight">
                 <thead>
                     <tr>
-                        <th>Usuário <i class="material-icons">keyboard_arrow_up</i> <i class="material-icons">keyboard_arrow_down</i> <i class="material-icons">keyboard_arrow_right</i> </th>
-                        <th>Título <i class="material-icons">keyboard_arrow_up</i> <i class="material-icons">keyboard_arrow_down</i> <i class="material-icons">keyboard_arrow_right</i> </th>
-                        <th>Data <i class="material-icons">keyboard_arrow_up</i> <i class="material-icons">keyboard_arrow_down</i> <i class="material-icons">keyboard_arrow_right</i> </th>
-                        <th>Valor <i class="material-icons">keyboard_arrow_up</i> <i class="material-icons">keyboard_arrow_down</i> <i class="material-icons">keyboard_arrow_right</i> </th>
-                        <th>Pago <i class="material-icons">keyboard_arrow_up</i> <i class="material-icons">keyboard_arrow_down</i> <i class="material-icons">keyboard_arrow_right</i> </th>
+                        <th *ngFor="let sortHeader of sortTableHeaders; let i = index" [attr.data-index]="i">
+                            {{sortHeader.textoCampo}}
+                            <span>
+                                <i [ngClass]="(sortHeader.isAsc() && sortHeader.sort) ? 'selected-sort' : 'non-selected-sort'" class="material-icons pointer" (click)="selecionarSortAsc(sortHeader)">keyboard_arrow_up</i>
+                                <i [ngClass]="(sortHeader.isDesc() && sortHeader.sort) ? 'selected-sort' : 'non-selected-sort'" class="material-icons pointer" (click)="selecionarSortDesc(sortHeader)">keyboard_arrow_down</i>
+                            </span>
+                        </th>
                         <th></th>
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody *ngFor="let pagamento of pagamentosList">
                     <tr>
-                        <td>Alvin</td>
-                        <td>Eclair</td>
-                        <td>Eclair</td>
-                        <td>01/01/2000</td>
-                        <td>$0.87</td>
+                        <td>{{pagamento.name}}<br />@{{pagamento.username}}</td>
+                        <td>{{pagamento.title}}</td>
+                        <td>{{pagamento.date | date:"dd/MM/yyyy - HH:mm:ss" }}</td>
+                        <td>{{pagamento.value | currency: 'BRL'}}</td>
+                        <td>
+                            <i *ngIf="pagamento.isPayed" class="material-icons">check_circle</i>
+                        </td>
                         <td><i class="material-icons">edit</i> <i (click)="modalExclusao.show()" class="material-icons">delete</i></td>
-                    </tr>
-                    <tr>
-                        <td>Alvin</td>
-                        <td>Eclair</td>
-                        <td>Eclair</td>
-                        <td>01/01/2000</td>
-                        <td>$0.87</td>
-                        <td><i class="material-icons">edit</i> <i class="material-icons">delete</i></td>
-                    </tr>
-                    <tr>
-                        <td>Alvin</td>
-                        <td>Eclair</td>
-                        <td>Eclair</td>
-                        <td>01/01/2000</td>
-                        <td>$0.87</td>
-                        <td><i class="material-icons">edit</i> <i class="material-icons">delete</i></td>
-                    </tr>
-                    <tr>
-                        <td>Alvin</td>
-                        <td>Eclair</td>
-                        <td>Eclair</td>
-                        <td>01/01/2000</td>
-                        <td>$0.87</td>
-                        <td><i class="material-icons">edit</i> <i class="material-icons">delete</i></td>
-                    </tr>
-                    <tr>
-                        <td>Alvin</td>
-                        <td>Eclair</td>
-                        <td>Eclair</td>
-                        <td>01/01/2000</td>
-                        <td>$0.87</td>
-                        <td><i class="material-icons">edit</i> <i class="material-icons">delete</i></td>
-                    </tr>
-                    <tr>
-                        <td>Alvin</td>
-                        <td>Eclair</td>
-                        <td>Eclair</td>
-                        <td>01/01/2000</td>
-                        <td>$0.87</td>
-                        <td><i class="material-icons">edit</i> <i class="material-icons">delete</i></td>
                     </tr>
                 </tbody>
             </table>
@@ -88,23 +52,22 @@
         <div class="row">
             <div class="col s12 m6 left-align">
                 <div class="input-field col ml5">
-                    <select>
-                        <option value="5">5</option>
+                    <select [(ngModel)]="paginacao.quantidadePorPagina" (change)="obterPagamentosQuantidadeAlterada()">
+                        <option selected="selected" value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
                     </select>
                     <label>Quantidade por página</label>
                 </div>
             </div>
+
             <div class="col s12 m6 right-align">
                 <ul class="pagination">
-                    <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                    <li class="active"><a href="#!">1</a></li>
-                    <li class="waves-effect"><a href="#!">2</a></li>
-                    <li class="waves-effect"><a href="#!">3</a></li>
-                    <li class="waves-effect"><a href="#!">4</a></li>
-                    <li class="waves-effect"><a href="#!">5</a></li>
-                    <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+                    <li class="pointer" [ngClass]="{ 'disabled': paginacao.paginaAtual === 1 }"><a ><i class="material-icons">chevron_left</i></a></li>
+                    <li *ngIf="paginacao.possuiPaginaAnterior()" class="pointer"><a (click)="obterPagamentosPaginacao(paginacao.paginaAtual-1)">{{paginacao.paginaAtual-1}}</a></li>
+                    <li class="active"><a >{{paginacao.paginaAtual}}</a></li>
+                    <li *ngIf="paginacao.possuiProximaPagina" class="pointer"><a  (click)="obterPagamentosPaginacao(paginacao.paginaAtual+1)">{{paginacao.paginaAtual+1}}</a></li>
+                    <li [ngClass]="{ 'disabled': !paginacao.possuiProximaPagina }" class="pointer"><a (click)="obterPagamentosPaginacao(paginacao.paginaAtual+1)"><i class="material-icons">chevron_right</i></a></li>
                 </ul>
             </div>
         </div>

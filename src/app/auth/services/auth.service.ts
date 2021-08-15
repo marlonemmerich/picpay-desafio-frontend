@@ -9,7 +9,7 @@ import { ApiService } from 'src/app/shared/services/api.service';
 })
 
 export class AuthService {
-  private readonly API_URL = 'http://localhost:3000/';
+  private readonly API_URL = 'http://localhost:3000/account';
   private usuarioLogado = new BehaviorSubject<boolean>(false); // true is your initial value
   usuarioLogado$ = this.usuarioLogado.asObservable();
 
@@ -28,7 +28,7 @@ export class AuthService {
 
   login(user: User): any {
     return new Observable(observer => {
-      this.apiService.get(`${this.API_URL}account`)
+      this.apiService.get(this.API_URL)
       .subscribe({
         next: (users: Array<any>) => {
           users.forEach((userServer: any) => {
@@ -41,7 +41,6 @@ export class AuthService {
           });
           observer.error({mensagem: 'E-mail e/ou senha incorretos!'});
           observer.complete();
-          // return throwError({msg: 'E-mail e/ou senha incorretos!'});
         },
         error: error => {
           observer.error({mensagem: 'Houve um erro desconhecido ao tentar se logar'});

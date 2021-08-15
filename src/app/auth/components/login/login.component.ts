@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       password: [user.password, Validators.required]
     });
   }
-s
+
   login() {
     this.isSubmitted = true;
 
@@ -52,7 +52,7 @@ s
         this.router.navigateByUrl('/pagamentos');
       },
       error: error => {
-        console.log('error', error);
+
         M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro ao tentar se logar', displayLength: 3000, classes: 'red'});
       },
     });

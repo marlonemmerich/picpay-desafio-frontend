@@ -6,6 +6,7 @@ import { ModalPagamentoComponent } from 'src/app/pagamentos/components/modal-pag
 import { ModalExclusaoComponent } from './components/modal-exclusao/modal-exclusao.component';
 import { PagamentosRoutingModule } from './pagamentos-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { FormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -24,6 +25,7 @@ const routes: Routes = [
     CommonModule,
     SharedModule,
     PagamentosRoutingModule,
-  ]
+    FormsModule
+  ],
 })
 export class PagamentosModule { }
