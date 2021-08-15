@@ -2,39 +2,60 @@
 <div [id]="idModal" class="modal">
     <div class="modal-content">
         <h4>Adicionar pagamento</h4>
-        <div class="row">
-            <div class="col s12">
-                <div class="input-field col s12 m6">
-                    <input id="input-pagamento-usuario" type="text" class="validate">
-                    <label for="input-pagamento-usuario">Usuário</label>
-                    <span id="span-validacao-input-pagamento-usuario" class="helper-text">Obrigatório</span>
-                </div>
-                <div class="input-field col s12 m6">
-                    <input id="input-pagamento-valor" type="text" class="validate">
-                    <label for="input-pagamento-valor">Valor</label>
-                    <span id="span-validacao-input-pagamento-valor" class="helper-text">Obrigatório</span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col s12">
-                <div class="input-field col s12 m4">
-                    <input [id]="idDatePick" type="text" class="validate">
-                    <label [for]="idDatePick">Data</label>
-                    <span id="span-validacao-input-pagamento-data" class="helper-text">Obrigatório</span>
-                </div>
-                <div class="input-field col s12 m4">
-                    <input [id]="idTimePick" type="text" class="validate">
-                    <label [for]="idTimePick">Hora</label>
-                    <span id="span-validacao-input-pagamento-hora" class="helper-text">Obrigatório</span>
-                </div>
-                <div class="input-field col s12 m4">
-                    <input id="input-pagamento-titulo" type="text" class="validate">
-                    <label for="input-pagamento-titulo">Título</label>
-                    <span id="span-validacao-input-pagamento-usuario" class="helper-text">Opcional</span>
+        <form>
+            <div class="row">
+                <div class="col s12">
+                    <div class="input-field col s12 m4">
+                        <input id="input-pagamento-usuario" type="text" class="validate">
+                        <label for="input-pagamento-usuario">Nome</label>
+                        <span id="span-validacao-input-pagamento-usuario" class="helper-text">Obrigatório</span>
+                    </div>
+                    <div class=" col s12 m4">
+                        @
+                        <div class="input-field inline">
+                            <input id="input-pagamento-nome-usuario" type="text" class="validate">
+                            <label for="input-pagamento-nome-usuario">Nome do usuário</label>
+                            <span id="span-validacao-input-pagamento-nome-usuario" class="helper-text">Obrigatório</span>
+                        </div>
+                    </div>
+                    <div class=" col s12 m4">
+                        R$
+                        <div class="input-field inline">
+                            <input id="input-pagamento-valor" type="number" class="validate">
+                            <label for="input-pagamento-valor">Valor</label>
+                            <span id="span-validacao-input-pagamento-valor" class="helper-text">Obrigatório</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div class="row">
+                <div class="col s12">
+                    <div class="input-field col s12 m4">
+                        <input [id]="idDatePick" type="text" class="validate">
+                        <label [for]="idDatePick">Data</label>
+                        <span id="span-validacao-input-pagamento-data" class="helper-text">Obrigatório</span>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input [id]="idTimePick" type="text" class="validate">
+                        <label [for]="idTimePick">Hora</label>
+                        <span id="span-validacao-input-pagamento-hora" class="helper-text">Obrigatório</span>
+                    </div>
+                    <div class="input-field col s12 m4">
+                        <input id="input-pagamento-titulo" type="text" class="validate">
+                        <label for="input-pagamento-titulo">Título</label>
+                        <span id="span-validacao-input-pagamento-usuario" class="helper-text">Opcional</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col s12 right-align">
+                    <label>
+                        <input id="input-pagamento-checkbox-is-pago" type="checkbox" />
+                        <span>Pago</span>
+                    </label>
+                </div>
+            </div>
+        </form>
     </div>
     <div class="modal-footer left">
         <button class="modal-close btn grey lighten-4 black-text">Cancelar</button>
