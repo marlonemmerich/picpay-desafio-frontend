@@ -3,20 +3,20 @@
         <div class="col m12">
             <h4><b class="primary-color">Pay</b>Friends</h4>
             <h4><b>Bem-vindo de volta</b></h4>
-            <form id="form-login">
+            <form id="form-login" [formGroup]="formLogin" (ngSubmit)="login()">
                 <div class="input-field col s12">
-                    <input id="input-email" type="email" class="validate">
+                    <input id="input-email" type="email" class="validate" [ngClass]="{ 'invalid': isSubmitted && formLogin.controls.email.errors }"  formControlName="email">
                     <label for="input-email">E-mail</label>
-                    <span id="span-validacao-input-email"  class="helper-text">E-mail padrão: usuario@gmail.com</span>
+                    <span id="span-validacao-input-email" data-error="Preencha corretamente o e-mail" class="helper-text">E-mail padrão: usuario@gmail.com</span>
                 </div>
 
                 <div class="input-field col s12">
-                    <input id="input-password" type="password" class="validate">
+                    <input id="input-password" type="password" class="validate" [ngClass]="{ 'invalid': isSubmitted && formLogin.controls.password.errors }" formControlName="password">
                     <label for="input-password">Senha</label>
-                    <span id="span-validacao-input-password" class="helper-text">Senha padrão: usuario</span>
+                    <span id="span-validacao-input-password" class="helper-text" data-error="Preencha corretamente a senha">Senha padrão: usuario</span>
                 </div>
 
-                <button id="button-login" class="waves-effect waves-light btn col s12">Login</button>
+                <button id="button-login" type="submit" class="waves-effect waves-light btn col s12">Login</button>
             </form>
         </div>
     </div>

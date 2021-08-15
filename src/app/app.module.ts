@@ -1,4 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
@@ -9,6 +8,11 @@ import { AuthModule } from './auth/auth.module';
 import { PagamentosModule } from './pagamentos/pagamentos.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule } from './app-routing.module';
+
+import { BrowserModule } from '@angular/platform-browser';
+
 
 @NgModule({
   declarations: [
@@ -17,12 +21,14 @@ import { RouterModule } from '@angular/router';
     HeaderComponent,
    ],
   imports: [
+    HttpClientModule,
     SharedModule,
     BrowserModule,
     CoreModule,
     AuthModule,
     PagamentosModule,
     RouterModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [
