@@ -16,7 +16,7 @@
                 </div>
 
                 <div class="input-field col s12 m5 xl4">
-                    <button class="btn center-align" (click)="obterPagamentosFiltro()"><i class="material-icons left">filter_alt</i>Filtrar</button>
+                    <button class="btn center-align" (click)="obterPagamentosResetandoPagina()"><i class="material-icons left">filter_alt</i>Filtrar</button>
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
                         <td>
                             <i *ngIf="pagamento.isPayed" class="material-icons">check_circle</i>
                         </td>
-                        <td><i class="material-icons">edit</i> <i (click)="modalExclusao.show()" class="material-icons">delete</i></td>
+                        <td><i class="material-icons pointer">edit</i> <i (click)="modalExclusao.show(pagamento)" class="material-icons pointer">delete</i></td>
                     </tr>
                 </tbody>
             </table>
@@ -52,7 +52,7 @@
         <div class="row">
             <div class="col s12 m6 left-align">
                 <div class="input-field col ml5">
-                    <select [(ngModel)]="paginacao.quantidadePorPagina" (change)="obterPagamentosQuantidadeAlterada()">
+                    <select [(ngModel)]="paginacao.quantidadePorPagina" (change)="obterPagamentosResetandoPagina()">
                         <option selected="selected" value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>

@@ -4,6 +4,7 @@ import { Filtro } from 'src/app/core/models/filtro.model';
 import { Paginacao } from 'src/app/core/models/paginacao.model';
 import { SortTableHeader } from 'src/app/core/models/sort-table-header.model';
 import { ApiService } from 'src/app/shared/services/api.service';
+import Pagamento from '../models/pagamento.model';
 
 @Injectable({
   providedIn: 'root'
@@ -34,5 +35,9 @@ export class PagamentosService {
     let httpParams = new HttpParams({ fromObject: params });
 
     return this.apiService.get(this.API_URL, httpParams);
+  }
+
+  removerPagamento(pagamento: Pagamento) {
+    return this.apiService.delete(`${this.API_URL}/${pagamento.id}`);
   }
 }

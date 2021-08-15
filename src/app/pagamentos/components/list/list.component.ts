@@ -2,12 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css';
 import { finalize } from 'rxjs/operators';
 import { SortOrdem } from 'src/app/core/enums/sort-ordem';
+import { RetornoModal } from 'src/app/core/interfaces/retorno-modal';
 import { Filtro } from 'src/app/core/models/filtro.model';
 import { Paginacao } from 'src/app/core/models/paginacao.model';
 import { SortTableHeader } from 'src/app/core/models/sort-table-header.model';
 
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import Pagamento from '../../models/pagamento.model';
+import { ModalExclusaoService } from '../../services/modal-exclusao.service';
 import { PagamentosService } from '../../services/pagamentos.service';
 
 @Component({
@@ -50,12 +52,20 @@ export class ListComponent implements OnInit {
 
   constructor(
     private pagamentosService: PagamentosService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private modalExclusaoService: ModalExclusaoService
   ) { }
 
   ngOnInit(): void {
     this.obterPagamentos();
     this.montarElemenetosMaterialize();
+
+    /* observando a modal de exclusão */
+    this.modalExclusaoService.statusExclusao.subscribe((retorno: RetornoModal) => {
+      if (retorno.sucesso) {
+        this.obterPagamentosResetandoPagina();
+      }
+    });
   }
 
   montarElemenetosMaterialize() {
@@ -66,7 +76,6 @@ export class ListComponent implements OnInit {
 
   obterPagamentos() {
     this.pagamentosList = [];
-    console.log(this.pagamentosList)
     this.loadingService.exibir();
 
     this.pagamentosService.getPagamentos(this.paginacao, this.filtro, this.sortTableHeadersSelecionado)
@@ -87,7 +96,6 @@ export class ListComponent implements OnInit {
             }
             count++;
           });
-          console.log(this.pagamentosList)
         },
         error: error => {
           M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro  desconhecido ao obter os pagamentos', displayLength: 3000, classes: 'red'});
@@ -95,33 +103,21 @@ export class ListComponent implements OnInit {
       });
   }
 
-  obterPagamentosQuantidadeAlterada() {
-    this.paginacao.paginaAtual = 1;
-    this.obterPagamentos();
-  }
-
   obterPagamentosPaginacao(pagina: number) {
     this.paginacao.paginaAtual = pagina;
     this.obterPagamentos();
   }
 
-  obterPagamentosFiltro() {
-    this.paginacao.paginaAtual = 1;
-    this.obterPagamentos();
-  }
-
-  obterPagamentosResetado() {
+  obterPagamentosResetandoPagina() {
     this.paginacao.paginaAtual = 1;
     this.obterPagamentos();
   }
 
   selecionarSortAsc(sort: SortTableHeader) {
-    console.log(sort);
     this.selecionarSort(sort, SortOrdem.asc);
   }
 
   selecionarSortDesc(sort: SortTableHeader) {
-    console.log(sort);
     this.selecionarSort(sort, SortOrdem.desc);
   }
 
@@ -136,7 +132,7 @@ export class ListComponent implements OnInit {
     });
     sort.setSortStatus(statusSortOrdemAnterior, statusSortAnterior);
     this.sortTableHeadersSelecionado = sort;
-    this.obterPagamentosResetado();
+    this.obterPagamentosResetandoPagina();
   }
 
 }

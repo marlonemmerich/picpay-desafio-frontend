@@ -3,19 +3,22 @@
     <div class="modal-content">
         <h4>Excluir pagamento</h4>
         <div class="row">
-            <p>
-                Usuário: AAAAA
-            </p>
-            <p>
-                Data: AAAAA
-            </p>
-            <p>
-                Valor: AAAAA
-            </p>
+            <div class="col s12 card-panel grey lighten-3">
+                <p>
+                    Usuário: {{pagamentoExclusao.name}} (@{{pagamentoExclusao.username}})
+                </p>
+                <p>
+                    Data: {{pagamentoExclusao.date | date:"dd/MM/yyyy - HH:mm:ss"}}
+                </p>
+                <p>
+                    Valor: {{pagamentoExclusao.value | currency: 'BRL'}}
+                </p>
+            </div>
         </div>
     </div>
+
     <div class="modal-footer left">
         <button class="modal-close btn grey lighten-4 black-text">Cancelar</button>
-        <button class="modal-close btn">Confirmar</button>
+        <button class="btn red" (click)="confirmarExclusao()">Confirmar</button>
     </div>
 </div>
