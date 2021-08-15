@@ -4,6 +4,8 @@ import { ListComponent } from './components/list/list.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ModalPagamentoComponent } from 'src/app/pagamentos/components/modal-pagamento/modal-pagamento.component';
 import { ModalExclusaoComponent } from './components/modal-exclusao/modal-exclusao.component';
+import { PagamentosRoutingModule } from './pagamentos-routing.module';
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [
   {
@@ -20,7 +22,8 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    RouterModule.forRoot(routes),
+    SharedModule,
+    PagamentosRoutingModule,
   ]
 })
 export class PagamentosModule { }

@@ -44,7 +44,8 @@ export class AuthService {
           // return throwError({msg: 'E-mail e/ou senha incorretos!'});
         },
         error: error => {
-          return throwError({msg: (error && error.message) ? error.message : 'E-mail e/ou senha incorretos!'});
+          observer.error({mensagem: 'Houve um erro desconhecido ao tentar se logar'});
+          observer.complete();
         },
       });
 
