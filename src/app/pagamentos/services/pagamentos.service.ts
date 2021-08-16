@@ -40,4 +40,9 @@ export class PagamentosService {
   removerPagamento(pagamento: Pagamento) {
     return this.apiService.delete(`${this.API_URL}/${pagamento.id}`);
   }
+
+  cadastrarPagamento(pagamento: Pagamento) {
+    return this.apiService.post(this.API_URL, pagamento)
+  }
+
 }

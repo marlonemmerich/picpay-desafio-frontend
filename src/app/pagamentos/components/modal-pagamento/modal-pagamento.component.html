@@ -1,27 +1,27 @@
 <!-- Modal Structure -->
 <div [id]="idModal" class="modal">
-    <div class="modal-content">
-        <h4>Adicionar pagamento</h4>
-        <form>
+    <form id="form-produto" [formGroup]="formPagamento" (ngSubmit)="enviarPagamento()">
+        <div class="modal-content">
+            <h4>Adicionar pagamento</h4>
             <div class="row">
                 <div class="col s12">
                     <div class="input-field col s12 m4">
-                        <input id="input-pagamento-usuario" type="text" class="validate">
+                        <input id="input-pagamento-usuario" type="text" class="validate" [ngClass]="{ 'invalid': isSubmitted && formPagamento.controls.name.errors }"  formControlName="name">
                         <label for="input-pagamento-usuario">Nome</label>
                         <span id="span-validacao-input-pagamento-usuario" class="helper-text">Obrigatório</span>
                     </div>
                     <div class=" col s12 m4">
                         @
                         <div class="input-field inline">
-                            <input id="input-pagamento-nome-usuario" type="text" class="validate">
+                            <input id="input-pagamento-nome-usuario" type="text" class="validate" [ngClass]="{ 'invalid': isSubmitted && formPagamento.controls.username.errors }"  formControlName="username">
                             <label for="input-pagamento-nome-usuario">Nome do usuário</label>
                             <span id="span-validacao-input-pagamento-nome-usuario" class="helper-text">Obrigatório</span>
                         </div>
                     </div>
-                    <div class=" col s12 m4">
+                    <div class="col s12 m4">
                         R$
                         <div class="input-field inline">
-                            <input id="input-pagamento-valor" type="number" class="validate">
+                            <input id="input-pagamento-valor" type="number" min="0" step="0.01" class="validate" [ngClass]="{ 'invalid': isSubmitted && formPagamento.controls.value.errors }"  formControlName="value">
                             <label for="input-pagamento-valor">Valor</label>
                             <span id="span-validacao-input-pagamento-valor" class="helper-text">Obrigatório</span>
                         </div>
@@ -31,17 +31,17 @@
             <div class="row">
                 <div class="col s12">
                     <div class="input-field col s12 m4">
-                        <input [id]="idDatePick" type="text" class="validate">
+                        <input [id]="idDatePick" type="text" [textMask]="{mask: maskDate}" class="validate" [ngClass]="{ 'invalid': isSubmitted && formPagamento.controls.data.errors }"  formControlName="data">
                         <label [for]="idDatePick">Data</label>
-                        <span id="span-validacao-input-pagamento-data" class="helper-text">Obrigatório</span>
+                        <span id="span-validacao-input-pagamento-data" class="helper-text">Obrigatório (dd/mm/yyyy)</span>
                     </div>
                     <div class="input-field col s12 m4">
-                        <input [id]="idTimePick" type="text" class="validate">
+                        <input [id]="idTimePick" type="text" class="validate" [textMask]="{mask: maskHora}" [ngClass]="{ 'invalid': isSubmitted && formPagamento.controls.hora.errors }"  formControlName="hora">
                         <label [for]="idTimePick">Hora</label>
-                        <span id="span-validacao-input-pagamento-hora" class="helper-text">Obrigatório</span>
+                        <span id="span-validacao-input-pagamento-hora" class="helper-text">Obrigatório (hh:mm)</span>
                     </div>
                     <div class="input-field col s12 m4">
-                        <input id="input-pagamento-titulo" type="text" class="validate">
+                        <input id="input-pagamento-titulo" type="text" class="validate" [ngClass]="{ 'invalid': isSubmitted && formPagamento.controls.title.errors }"  formControlName="title">
                         <label for="input-pagamento-titulo">Título</label>
                         <span id="span-validacao-input-pagamento-usuario" class="helper-text">Opcional</span>
                     </div>
@@ -50,15 +50,17 @@
             <div class="row">
                 <div class="col s12 right-align">
                     <label>
-                        <input id="input-pagamento-checkbox-is-pago" type="checkbox" />
+                        <input id="input-pagamento-checkbox-is-pago" type="checkbox" [ngClass]="{ 'invalid': isSubmitted && formPagamento.controls.isPayed.errors }" formControlName="isPayed" />
                         <span>Pago</span>
                     </label>
                 </div>
             </div>
-        </form>
-    </div>
-    <div class="modal-footer left">
-        <button class="modal-close btn grey lighten-4 black-text">Cancelar</button>
-        <button class="modal-close btn">Salvar</button>
-    </div>
+
+        </div>
+
+        <div class="modal-footer left">
+            <button class="modal-close btn grey lighten-4 black-text">Cancelar</button>
+            <button type="submit" class="btn">Salvar</button>
+        </div>
+    </form>
 </div>

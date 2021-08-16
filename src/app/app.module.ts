@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import ptBr from '@angular/common/locales/pt';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
@@ -12,7 +13,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserModule } from '@angular/platform-browser';
+import { registerLocaleData } from '@angular/common';
 
+registerLocaleData(ptBr);
 
 @NgModule({
   declarations: [
@@ -28,7 +31,7 @@ import { BrowserModule } from '@angular/platform-browser';
     AuthModule,
     PagamentosModule,
     RouterModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [

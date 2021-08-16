@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import MODAL_OPTIONS from 'src/app/shared/consts/modal.const';
-import { ModalInterface } from 'src/app/shared/interfaces/modal-interface';
 import * as M from 'materialize-css';
 import Pagamento from '../../models/pagamento.model';
 import { LoadingService } from 'src/app/shared/service/loading.service';
@@ -13,7 +12,7 @@ import { finalize } from 'rxjs/operators';
   templateUrl: './modal-exclusao.component.html',
   styleUrls: ['./modal-exclusao.component.scss']
 })
-export class ModalExclusaoComponent implements ModalInterface {
+export class ModalExclusaoComponent {
   private modalInstance;
 
   idModal = 'id-modal-exclusao-pagamento';
