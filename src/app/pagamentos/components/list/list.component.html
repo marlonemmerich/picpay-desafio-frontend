@@ -44,7 +44,10 @@
                         <td>
                             <i *ngIf="pagamento.isPayed" class="material-icons">check_circle</i>
                         </td>
-                        <td><i class="material-icons pointer">edit</i> <i (click)="modalExclusao.show(pagamento)" class="material-icons pointer">delete</i></td>
+                        <td>
+                            <i (click)="modalPagamento.abrirModalEditar(pagamento)" class="material-icons pointer">edit</i>
+                            <i (click)="modalExclusao.abrir(pagamento)" class="material-icons pointer">delete</i>
+                        </td>
                     </tr>
                 </tbody>
             </table>

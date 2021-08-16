@@ -23,13 +23,13 @@ export class ModalExclusaoComponent {
     private pagamentoService: PagamentosService
   ) { }
 
-  show(pagamento: Pagamento) {
+  abrir(pagamento: Pagamento) {
     this.pagamentoExclusao = Object.assign(this.pagamentoExclusao, pagamento);
     this.inicializarElementos();
     this.modalInstance.open();
   }
 
-  hide() {
+  fechar() {
     this.modalInstance.close();
   }
 
@@ -54,7 +54,7 @@ export class ModalExclusaoComponent {
             objeto: this.pagamentoExclusao
           }
           this.modalExlusaoService.atualizarStatusExclusao(parametros);
-          this.hide();
+          this.fechar();
           M.toast({html: 'Pagamento removido com sucesso!', displayLength: 3000, classes: 'green'});
         },
         error: error => {
