@@ -4,13 +4,13 @@ export class SortTableHeader {
 
     textoCampo: string;
     chaveCampo: string;
-    sort: boolean;
+    isSorting: boolean;
     sortOrdem: SortOrdem;
 
     constructor(parametros: any) {
         this.textoCampo = (parametros && parametros.textoCampo) ? parametros.textoCampo : '';
         this.chaveCampo = (parametros && parametros.chaveCampo) ? parametros.chaveCampo : '';
-        this.sort = (parametros && parametros.sort) ? parametros.sort : false;
+        this.isSorting = (parametros && parametros.sort) ? parametros.sort : false;
         this.sortOrdem = (parametros && parametros.sortOrdem) ? parametros.sortOrdem : SortOrdem.asc;
     }
 
@@ -31,7 +31,7 @@ export class SortTableHeader {
     }
 
     setSortStatus(situacaoAnterior: SortOrdem, sortAnterior: boolean) {
-        this.sort = true;
+        this.isSorting = true;
         if ((!!sortAnterior) && situacaoAnterior === SortOrdem.asc) {
             this.setDesc();
             return;
@@ -40,7 +40,7 @@ export class SortTableHeader {
     }
 
     resetSortStatus() {
-        this.sort = false;
+        this.isSorting = false;
         this.sortOrdem = SortOrdem.asc;
     }
 

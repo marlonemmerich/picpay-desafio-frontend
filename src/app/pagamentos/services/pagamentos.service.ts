@@ -38,7 +38,7 @@ export class PagamentosService {
       params[`${filtro.chaveBusca}_like`] =  `^.*${filtro.valorBusca}.*$`;
     }
 
-    if (sort.sort) {
+    if (sort.isSorting) {
       params._sort =  sort.chaveCampo;
       params._order =  sort.sortOrdem;
     }

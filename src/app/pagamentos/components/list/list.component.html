@@ -27,8 +27,8 @@
                         <th *ngFor="let sortHeader of sortTableHeaders; let i = index" [attr.data-index]="i">
                             {{sortHeader.textoCampo}}
                             <span>
-                                <i [ngClass]="(sortHeader.isAsc() && sortHeader.sort) ? 'selected-sort' : 'non-selected-sort'" class="material-icons pointer" (click)="selecionarSortAsc(sortHeader)">keyboard_arrow_up</i>
-                                <i [ngClass]="(sortHeader.isDesc() && sortHeader.sort) ? 'selected-sort' : 'non-selected-sort'" class="material-icons pointer" (click)="selecionarSortDesc(sortHeader)">keyboard_arrow_down</i>
+                                <i [ngClass]="(sortHeader.isAsc() && sortHeader.isSorting) ? 'selected-sort' : 'non-selected-sort'" class="material-icons pointer" (click)="selecionarSortAsc(sortHeader)">keyboard_arrow_up</i>
+                                <i [ngClass]="(sortHeader.isDesc() && sortHeader.isSorting) ? 'selected-sort' : 'non-selected-sort'" class="material-icons pointer" (click)="selecionarSortDesc(sortHeader)">keyboard_arrow_down</i>
                             </span>
                         </th>
                         <th></th>

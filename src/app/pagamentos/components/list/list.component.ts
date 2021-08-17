@@ -133,11 +133,11 @@ export class ListComponent implements OnInit {
   }
 
   selecionarSort(sort: SortTableHeader, novaSituacao: SortOrdem) {
-    if (sort.sort && sort.sortOrdem === novaSituacao) {
+    if (sort.isSorting && sort.sortOrdem === novaSituacao) {
       return;
     }
     const statusSortOrdemAnterior = sort.sortOrdem;
-    const statusSortAnterior = sort.sort;
+    const statusSortAnterior = sort.isSorting;
     this.sortTableHeaders.forEach((sortHeader) => {
       sortHeader.resetSortStatus();
     });

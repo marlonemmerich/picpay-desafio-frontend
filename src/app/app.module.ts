@@ -3,7 +3,6 @@ import ptBr from '@angular/common/locales/pt';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
-import { SharedModule } from './shared/shared.module';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { AuthModule } from './auth/auth.module';
 import { PagamentosModule } from './pagamentos/pagamentos.module';
@@ -25,7 +24,6 @@ registerLocaleData(ptBr);
    ],
   imports: [
     HttpClientModule,
-    SharedModule,
     BrowserModule,
     CoreModule,
     AuthModule,
