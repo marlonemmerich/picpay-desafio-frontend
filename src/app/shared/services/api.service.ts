@@ -21,12 +21,12 @@ export class ApiService {
       .pipe(catchError(this.parseErrors));
   }
 
-  put(path: string, body: Object = {}): Observable<any> {
+  put(path: string, body = {}): Observable<any> {
     return this.http.put(path, body)
       .pipe(catchError(this.parseErrors));
   }
 
-  post(path: string, body: Object = {}): Observable<any> {
+  post(path: string, body = {}): Observable<any> {
     return this.http.post(path, body)
       .pipe(catchError(this.parseErrors));
   }

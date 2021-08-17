@@ -81,7 +81,7 @@ export class ListComponent implements OnInit {
   montarElemenetosMaterialize() {
     setTimeout(() => {
       M.FormSelect.init(document.querySelectorAll('select'));
-    }, 50)
+    }, 50);
   }
 
   obterPagamentos() {
@@ -99,7 +99,7 @@ export class ListComponent implements OnInit {
           this.paginacao.possuiProximaPagina = false;
           let count = 1;
           pagamentos.forEach((pagamento: any) => {
-            if(count <= parseInt(this.paginacao.quantidadePorPagina)) {
+            if (count <= parseInt(this.paginacao.quantidadePorPagina, 10)) {
               this.pagamentosList.push(Object.assign(new Pagamento(), pagamento));
             } else {
               this.paginacao.possuiProximaPagina = true;
@@ -108,7 +108,8 @@ export class ListComponent implements OnInit {
           });
         },
         error: error => {
-          M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro  desconhecido ao obter os pagamentos', displayLength: 3000, classes: 'red'});
+          const mensagemDefault = 'Houve um erro  desconhecido ao obter os pagamentos';
+          M.toast({html: (error && error.mensagem) ? error.mensagem : mensagemDefault, displayLength: 3000, classes: 'red'});
         },
       });
   }
@@ -132,11 +133,11 @@ export class ListComponent implements OnInit {
   }
 
   selecionarSort(sort: SortTableHeader, novaSituacao: SortOrdem) {
-    if(sort.sort && sort.sortOrdem === novaSituacao) {
+    if (sort.sort && sort.sortOrdem === novaSituacao) {
       return;
     }
-    let statusSortOrdemAnterior = sort.sortOrdem;
-    let statusSortAnterior = sort.sort;
+    const statusSortOrdemAnterior = sort.sortOrdem;
+    const statusSortAnterior = sort.sort;
     this.sortTableHeaders.forEach((sortHeader) => {
       sortHeader.resetSortStatus();
     });

@@ -14,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
-  isSubmitted: boolean = false;
+  isSubmitted = false;
 
   constructor(
     private authService: AuthService,
@@ -52,8 +52,10 @@ export class LoginComponent implements OnInit {
         this.router.navigateByUrl('/pagamentos');
       },
       error: error => {
-
-        M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro ao tentar se logar', displayLength: 3000, classes: 'red'});
+        const mensagemDefault = 'Houve um erro ao tentar se logar';
+        M.toast({html: (error && error.mensagem) ?
+          error.mensagem :
+          mensagemDefault, displayLength: 3000, classes: 'red'});
       },
     });
   }

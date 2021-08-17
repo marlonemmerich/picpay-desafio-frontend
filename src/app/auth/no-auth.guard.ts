@@ -16,10 +16,10 @@ export class NoAuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      if(!this.authService.checkStorageUsuarioLogado()) {
+      if (!this.authService.checkStorageUsuarioLogado()) {
         return true;
       }
-      this.router.navigate(["/pagamentos"]);
+      this.router.navigate(['/pagamentos']);
       return false;
   }
 

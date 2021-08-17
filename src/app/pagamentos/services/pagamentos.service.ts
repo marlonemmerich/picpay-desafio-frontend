@@ -18,21 +18,32 @@ export class PagamentosService {
 
 
   getPagamentos(paginacao: Paginacao, filtro: Filtro, sort: SortTableHeader) {
-    let params = {};
+    const params = {
+      _start: undefined,
+      _limit: undefined,
+      _sort: undefined,
+      _order: undefined,
+    };
+    const intQuantidadePorPagina = parseInt(paginacao.quantidadePorPagina, 10);
+    const paginaAtual = paginacao.paginaAtual;
 
-    params['_start'] = paginacao.paginaAtual === 1 ? 0 : (paginacao.paginaAtual * parseInt(paginacao.quantidadePorPagina)) - parseInt(paginacao.quantidadePorPagina);
-    params['_limit'] = parseInt(paginacao.quantidadePorPagina) + 1; // apenas para definir se possui próxima página (backend não retornou o header com "X-Total-Count" =\)
+    params._start = paginaAtual === 1 ? 0 : (paginaAtual * intQuantidadePorPagina) - intQuantidadePorPagina;
+    params._limit = intQuantidadePorPagina + 1;
+    /* Linha acima apenas para definir se
+       possui próxima página (backend não
+       retornou o header com "X-Total-Count" =\)
+    */
 
-    if(!!filtro.valorBusca) {
+    if (!!filtro.valorBusca) {
       params[`${filtro.chaveBusca}_like`] =  `^.*${filtro.valorBusca}.*$`;
     }
 
-    if(sort.sort) {
-      params[`_sort`] =  sort.chaveCampo;
-      params[`_order`] =  sort.sortOrdem;
+    if (sort.sort) {
+      params._sort =  sort.chaveCampo;
+      params._order =  sort.sortOrdem;
     }
 
-    let httpParams = new HttpParams({ fromObject: params });
+    const httpParams = new HttpParams({ fromObject: params });
 
     return this.apiService.get(this.API_URL, httpParams);
   }
@@ -42,11 +53,11 @@ export class PagamentosService {
   }
 
   cadastrarPagamento(pagamento: Pagamento) {
-    return this.apiService.post(this.API_URL, pagamento)
+    return this.apiService.post(this.API_URL, pagamento);
   }
 
   editarPagamento(id: string | number, pagamento: Pagamento) {
-    return this.apiService.put(`${this.API_URL}/${id}`, pagamento)
+    return this.apiService.put(`${this.API_URL}/${id}`, pagamento);
   }
 
 }

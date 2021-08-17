@@ -1,10 +1,10 @@
 export default class Pagamento {
     id: number | null;
-    name: string = '';
-    username: string = '';
-    title : string = '';
+    name = '';
+    username = '';
+    title  = '';
     value: number | undefined = undefined;
     date: Date | string = '';
-    image: string = '';
-    isPayed: boolean = false;
+    image = '';
+    isPayed = false;
 }

@@ -34,7 +34,7 @@ export class ModalExclusaoComponent {
   }
 
   inicializarElementos() {
-    var elementModal = document.getElementById(this.idModal);
+    const elementModal = document.getElementById(this.idModal);
     this.modalInstance = M.Modal.init(elementModal, MODAL_OPTIONS);
   }
 
@@ -49,16 +49,17 @@ export class ModalExclusaoComponent {
       )
       .subscribe({
         next: () => {
-          let parametros = {
+          const parametros = {
             sucesso: true,
             objeto: this.pagamentoExclusao
-          }
+          };
           this.modalExlusaoService.atualizarStatusExclusao(parametros);
           this.fechar();
           M.toast({html: 'Pagamento removido com sucesso!', displayLength: 3000, classes: 'green'});
         },
         error: error => {
-          M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro ao tentar excluir o pagamento', displayLength: 3000, classes: 'red'});
+          const mensagemDefault = 'Houve um erro ao tentar excluir o pagamento';
+          M.toast({html: (error && error.mensagem) ? error.mensagem : mensagemDefault, displayLength: 3000, classes: 'red'});
         },
     });
   }

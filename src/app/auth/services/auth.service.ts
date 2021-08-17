@@ -22,7 +22,7 @@ export class AuthService {
     localStorage.setItem(this.TOKEN_USER, JSON.stringify(user));
   }
 
-  logout() : void {
+  logout(): void {
     localStorage.removeItem(this.TOKEN_USER);
   }
 
@@ -32,7 +32,7 @@ export class AuthService {
       .subscribe({
         next: (users: Array<any>) => {
           users.forEach((userServer: any) => {
-            if(userServer.email === user.email && userServer.password === user.password) {
+            if (userServer.email === user.email && userServer.password === user.password) {
               this.setarUsuarioLocalStorage(userServer);
               this.isUsuarioLogado = true;
               observer.next({msg: 'Usuário autenticado com sucesso!'});
@@ -55,7 +55,7 @@ export class AuthService {
     this.usuarioLogado.next(value);
   }
 
-  private get isUsuarioLogado():boolean {
+  private get isUsuarioLogado(): boolean {
     return this.isUsuarioLogado;
   }
 

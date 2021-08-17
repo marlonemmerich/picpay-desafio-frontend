@@ -1,4 +1,4 @@
 export interface RetornoModal {
-    sucesso: boolean | null,
-    objeto: object | null
+    sucesso: boolean | null;
+    objeto: object | null;
 }

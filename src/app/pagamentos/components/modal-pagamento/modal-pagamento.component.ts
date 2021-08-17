@@ -21,8 +21,8 @@ export class ModalPagamentoComponent implements OnInit {
   public maskHora = [/[0-9]/, /\d/, ':', /\d/, /\d/];
 
   formPagamento!: FormGroup;
-  isSubmitted: boolean = false;
-  estaEditando: boolean = false;
+  isSubmitted = false;
+  estaEditando = false;
   pagamento: Pagamento = new Pagamento();
   dataPickup: DatePickup = new DatePickup();
 
@@ -109,33 +109,35 @@ export class ModalPagamentoComponent implements OnInit {
     window.setTimeout(() => { // timeout para poder montar os elementos em tela
       (document.getElementById(this.idModal)).querySelectorAll('.validate').forEach((element) => {
         element.classList.add('valid');
-      })
+      });
       M.updateTextFields(); // Necessário para o materialize poder ajustar os elementos
-    }, 50)
+    }, 50);
   }
 
   inicializarElementos() {
-    var elementModal = document.getElementById(this.idModal);
+    const elementModal = document.getElementById(this.idModal);
     this.modalInstance = M.Modal.init(elementModal, MODAL_OPTIONS);
   }
 
   toISOFormat(dateTimeString: string) { // Ex.: recebemos "23/11/2021 : 10:12"
-    let [date, time] = dateTimeString.split(' ');
-    let [DD, MM, YYYY] = date.split('/');
-    let [HH, mm] = time.split(':');
+    const [date, time] = dateTimeString.split(' ');
+    const [DD, MM, YYYY] = date.split('/');
+    const [HH, mm] = time.split(':');
     return `${YYYY}-${MM}-${DD}T${HH}:${mm}`;
   }
 
   getDataFromDate(dateObj: Date): string { // Obtemos string dd/mm/yyyy de um Date
-    let ano = dateObj.getFullYear();
-    let mes = (1 + dateObj.getMonth()).toString().padStart(2, '0');
-    let dia = dateObj.getDate().toString().padStart(2, '0');
+    const ano = dateObj.getFullYear();
+    const mes = (1 + dateObj.getMonth()).toString().padStart(2, '0');
+    const dia = dateObj.getDate().toString().padStart(2, '0');
 
     return `${dia}/${mes}/${ano}`;
   }
 
   getTime(dateObj: Date): string { // retorna hh:mm string de um Date
-    return   `${(dateObj.getHours()<10?'0':'')}${dateObj.getHours()}:${(dateObj.getMinutes()<10?'0':'')}${dateObj.getMinutes()}`;
+    const horas = `${(dateObj.getHours() < 10 ? '0' : '')}${dateObj.getHours()}`;
+    const minutos = `${(dateObj.getMinutes() < 10 ? '0' : '')}${dateObj.getMinutes()}`;
+    return   `${horas}:${minutos}`;
   }
 
   enviarFormulario() {
@@ -144,11 +146,14 @@ export class ModalPagamentoComponent implements OnInit {
       return;
     }
 
+    const data = this.formPagamento.controls.data.value;
+    const hora = this.formPagamento.controls.hora.value;
+
     this.formPagamento.patchValue({
-      date: this.toISOFormat(`${this.formPagamento.controls['data'].value} ${this.formPagamento.controls['hora'].value}`)
+      date: this.toISOFormat(`${data} ${hora}`)
     });
 
-    if(this.estaEditando) {
+    if (this.estaEditando) {
       this.editarPagamento();
       return;
     }
@@ -166,17 +171,18 @@ export class ModalPagamentoComponent implements OnInit {
       )
       .subscribe({
         next: (retorno) => {
-          let parametros = {
+          const parametros = {
             sucesso: true,
             objeto: retorno
-          }
+          };
           this.modalPagamentoService.atualizarStatus(parametros);
 
           this.fechar();
           M.toast({html: 'Pagamento criado com sucesso!', displayLength: 3000, classes: 'green'});
         },
         error: error => {
-          M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro ao tentar criar o pagamento', displayLength: 3000, classes: 'red'});
+          const mensagemDefault = 'Houve um erro ao tentar criar o pagamento';
+          M.toast({html: (error && error.mensagem) ? error.mensagem : mensagemDefault, displayLength: 3000, classes: 'red'});
         },
     });
   }
@@ -191,12 +197,11 @@ export class ModalPagamentoComponent implements OnInit {
       )
       .subscribe({
         next: (retorno) => {
-          let parametros = {
+          const parametros = {
             sucesso: true,
             objeto: retorno
-          }
-          this.modalPagamentoService.atualizarStatus(parametros)
-
+          };
+          this.modalPagamentoService.atualizarStatus(parametros);
           this.fechar();
           M.toast({html: 'Pagamento editado com sucesso!', displayLength: 3000, classes: 'green'});
         },

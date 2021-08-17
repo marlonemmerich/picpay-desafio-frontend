@@ -1,4 +1,4 @@
-import { SortOrdem } from "../enums/sort-ordem";
+import { SortOrdem } from '../enums/sort-ordem';
 
 export class SortTableHeader {
 
@@ -32,7 +32,7 @@ export class SortTableHeader {
 
     setSortStatus(situacaoAnterior: SortOrdem, sortAnterior: boolean) {
         this.sort = true;
-        if((!!sortAnterior) && situacaoAnterior === SortOrdem.asc) {
+        if ((!!sortAnterior) && situacaoAnterior === SortOrdem.asc) {
             this.setDesc();
             return;
         }

@@ -16,8 +16,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   subscriptionLogin: Subscription;
   usuario: User;
 
-  idHeader: string = 'header-component';
-  idDropDownusuario: string = 'dropdown1';
+  idHeader = 'header-component';
+  idDropDownusuario = 'dropdown1';
   private headerInstance;
   private dropDownUsuarioInstance;
   constructor(
@@ -49,7 +49,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   deslogar() {
     this.authService.logout();
-    this.router.navigate(["/login"]);
+    this.router.navigate(['/login']);
   }
 
 }

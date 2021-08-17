@@ -1,7 +1,7 @@
 export class Paginacao {
-    paginaAtual: number = 1
-    quantidadePorPagina: string = '5';
-    possuiProximaPagina: boolean = false;
+    paginaAtual = 1;
+    quantidadePorPagina = '5';
+    possuiProximaPagina = false;
 
 
     avancarPagina(): void {
@@ -9,7 +9,7 @@ export class Paginacao {
     }
 
     possuiPaginaAnterior() {
-        if(this.paginaAtual > 1) {
+        if (this.paginaAtual > 1) {
             return true;
         }
         return false;
