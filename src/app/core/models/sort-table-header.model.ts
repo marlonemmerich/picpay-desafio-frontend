@@ -33,8 +33,8 @@ export class SortTableHeader {
     setSortStatus(situacaoAnterior: SortOrdem, sortAnterior: boolean, situacaoAtual: SortOrdem) {
         this.isSorting = true;
 
-        if(!sortAnterior) { // se não possuia nenhuma situação para esse sort setamos a nova situação
-            if(situacaoAtual === SortOrdem.asc) {
+        if (!sortAnterior) { // se não possuia nenhuma situação para esse sort setamos a nova situação
+            if (situacaoAtual === SortOrdem.asc) {
                 this.setAsc();
                 return;
             }

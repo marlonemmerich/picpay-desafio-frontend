@@ -115,14 +115,14 @@ export class ListComponent implements OnInit {
   }
 
   obterPagamentosPaginaAnterior(pagina: number) {
-    if(!pagina) {
+    if (!pagina) {
       return;
     }
     this.obterPagamentosPaginacao(pagina);
   }
 
   obterPagamentosPaginacaoPosterior(pagina: number, possuiProximaPagina: boolean) {
-    if(!possuiProximaPagina) {
+    if (!possuiProximaPagina) {
       return;
     }
     this.obterPagamentosPaginacao(pagina);
