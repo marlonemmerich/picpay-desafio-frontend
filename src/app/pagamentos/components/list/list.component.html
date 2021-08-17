@@ -66,11 +66,11 @@
 
             <div class="col s12 m6 right-align">
                 <ul class="pagination">
-                    <li class="pointer" [ngClass]="{ 'disabled': paginacao.paginaAtual === 1 }"><a ><i class="material-icons">chevron_left</i></a></li>
-                    <li *ngIf="paginacao.possuiPaginaAnterior()" class="pointer"><a (click)="obterPagamentosPaginacao(paginacao.paginaAtual-1)">{{paginacao.paginaAtual-1}}</a></li>
+                    <li class="pointer"  [ngClass]="{ 'disabled': paginacao.paginaAtual === 1 }"><a (click)="obterPagamentosPaginaAnterior((paginacao.paginaAtual-1))"><i class="material-icons">chevron_left</i></a></li>
+                    <li *ngIf="paginacao.possuiPaginaAnterior()" class="pointer"><a (click)="obterPagamentosPaginaAnterior(paginacao.paginaAtual-1)">{{paginacao.paginaAtual-1}}</a></li>
                     <li class="active"><a >{{paginacao.paginaAtual}}</a></li>
-                    <li *ngIf="paginacao.possuiProximaPagina" class="pointer"><a  (click)="obterPagamentosPaginacao(paginacao.paginaAtual+1)">{{paginacao.paginaAtual+1}}</a></li>
-                    <li [ngClass]="{ 'disabled': !paginacao.possuiProximaPagina }" class="pointer"><a (click)="obterPagamentosPaginacao(paginacao.paginaAtual+1)"><i class="material-icons">chevron_right</i></a></li>
+                    <li *ngIf="paginacao.possuiProximaPagina" class="pointer"><a  (click)="obterPagamentosPaginacaoPosterior((paginacao.paginaAtual+1), paginacao.possuiProximaPagina)">{{paginacao.paginaAtual+1}}</a></li>
+                    <li [ngClass]="{ 'disabled': !paginacao.possuiProximaPagina }" class="pointer"><a (click)="obterPagamentosPaginacaoPosterior((paginacao.paginaAtual+1), paginacao.possuiProximaPagina)"><i class="material-icons">chevron_right</i></a></li>
                 </ul>
             </div>
         </div>

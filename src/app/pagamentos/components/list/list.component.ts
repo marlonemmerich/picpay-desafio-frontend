@@ -114,6 +114,20 @@ export class ListComponent implements OnInit {
       });
   }
 
+  obterPagamentosPaginaAnterior(pagina: number) {
+    if(!pagina) {
+      return;
+    }
+    this.obterPagamentosPaginacao(pagina);
+  }
+
+  obterPagamentosPaginacaoPosterior(pagina: number, possuiProximaPagina: boolean) {
+    if(!possuiProximaPagina) {
+      return;
+    }
+    this.obterPagamentosPaginacao(pagina);
+  }
+
   obterPagamentosPaginacao(pagina: number) {
     this.paginacao.paginaAtual = pagina;
     this.obterPagamentos();
@@ -141,7 +155,7 @@ export class ListComponent implements OnInit {
     this.sortTableHeaders.forEach((sortHeader) => {
       sortHeader.resetSortStatus();
     });
-    sort.setSortStatus(statusSortOrdemAnterior, statusSortAnterior);
+    sort.setSortStatus(statusSortOrdemAnterior, statusSortAnterior, novaSituacao);
     this.sortTableHeadersSelecionado = sort;
     this.obterPagamentosResetandoPagina();
   }

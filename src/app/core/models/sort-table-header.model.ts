@@ -30,9 +30,20 @@ export class SortTableHeader {
         return this.sortOrdem === SortOrdem.desc;
     }
 
-    setSortStatus(situacaoAnterior: SortOrdem, sortAnterior: boolean) {
+    setSortStatus(situacaoAnterior: SortOrdem, sortAnterior: boolean, situacaoAtual: SortOrdem) {
         this.isSorting = true;
-        if ((!!sortAnterior) && situacaoAnterior === SortOrdem.asc) {
+
+        if(!sortAnterior) { // se não possuia nenhuma situação para esse sort setamos a nova situação
+            if(situacaoAtual === SortOrdem.asc) {
+                this.setAsc();
+                return;
+            }
+
+            this.setDesc();
+            return;
+        }
+
+        if (situacaoAnterior === SortOrdem.asc) {
             this.setDesc();
             return;
         }
