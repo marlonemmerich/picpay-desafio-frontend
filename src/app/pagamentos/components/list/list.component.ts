@@ -1,6 +1,7 @@
+import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 import { SortOrdem } from 'src/app/core/enums/sort-ordem';
 import { RetornoModal } from 'src/app/core/interfaces/retorno-modal';
 import { Filtro } from 'src/app/core/models/filtro.model';
@@ -70,7 +71,7 @@ export class ListComponent implements OnInit {
     });
 
     /* observando a modal de pagamento */
-    this.modalExclusaoPagamento.status.subscribe((retorno: RetornoModal) => {
+    this.modalExclusaoService.statusExclusao.subscribe((retorno: RetornoModal) => {
       if (retorno.sucesso) {
         this.obterPagamentosResetandoPagina();
       }
