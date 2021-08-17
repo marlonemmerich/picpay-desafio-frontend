@@ -10,6 +10,7 @@ import { SortTableHeader } from 'src/app/core/models/sort-table-header.model';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import Pagamento from '../../models/pagamento.model';
 import { ModalExclusaoService } from '../../services/modal-exclusao.service';
+import { ModalPagamentoService } from '../../services/modal-pagamento.service';
 import { PagamentosService } from '../../services/pagamentos.service';
 
 @Component({
@@ -53,7 +54,8 @@ export class ListComponent implements OnInit {
   constructor(
     private pagamentosService: PagamentosService,
     private loadingService: LoadingService,
-    private modalExclusaoService: ModalExclusaoService
+    private modalExclusaoService: ModalExclusaoService,
+    private modalExclusaoPagamento: ModalPagamentoService
   ) { }
 
   ngOnInit(): void {
@@ -62,6 +64,13 @@ export class ListComponent implements OnInit {
 
     /* observando a modal de exclusão */
     this.modalExclusaoService.statusExclusao.subscribe((retorno: RetornoModal) => {
+      if (retorno.sucesso) {
+        this.obterPagamentosResetandoPagina();
+      }
+    });
+
+    /* observando a modal de pagamento */
+    this.modalExclusaoPagamento.status.subscribe((retorno: RetornoModal) => {
       if (retorno.sucesso) {
         this.obterPagamentosResetandoPagina();
       }

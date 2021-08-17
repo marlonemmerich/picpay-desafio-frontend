@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import * as M from 'materialize-css';
-import { DatePipe, CurrencyPipe } from '@angular/common';
 import MODAL_OPTIONS from '../../../shared/consts/modal.const';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import Pagamento from '../../models/pagamento.model';
@@ -8,6 +7,7 @@ import { DatePickup } from '../../models/date-pickup';
 import { LoadingService } from 'src/app/shared/service/loading.service';
 import { PagamentosService } from '../../services/pagamentos.service';
 import { finalize } from 'rxjs/operators';
+import { ModalPagamentoService } from '../../services/modal-pagamento.service';
 
 @Component({
   selector: 'app-modal-pagamento',
@@ -16,9 +16,6 @@ import { finalize } from 'rxjs/operators';
 })
 export class ModalPagamentoComponent implements OnInit {
   private modalInstance;
-  private datePickInstance;
-  private timePickInstance;
-  private currencyPipe: CurrencyPipe;
 
   public maskDate = [/[0-3]/, /[0-9]/, '/',  /[0-1]/, /\d/, '/', /\d/, /\d/, /\d/, /\d/];
   public maskHora = [/[0-9]/, /\d/, ':', /\d/, /\d/];
@@ -36,10 +33,15 @@ export class ModalPagamentoComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private loadingService: LoadingService,
-    private pagamentoService: PagamentosService
+    private pagamentoService: PagamentosService,
+    private modalPagamentoService: ModalPagamentoService
   ) { }
 
   ngOnInit() {
+    this.registrarForm();
+  }
+
+  registrarForm() {
     this.formPagamento = this.formBuilder.group({
       name: [this.pagamento.name, Validators.required],
       username: [this.pagamento.username, Validators.required],
@@ -50,41 +52,66 @@ export class ModalPagamentoComponent implements OnInit {
       date: [this.pagamento.date],
       isPayed: [this.pagamento.isPayed],
     });
-
-    // this.formPagamento.valueChanges.subscribe((form) => {
-    //   if(form.data) {
-    //     if(form.data) {
-    //       let splitedData = form.date.split('/');
-    //       if(splitedData[0].length === 4) {
-    //         this.formPagamento.patchValue({
-    //           value: form.value.replace(splitedData[])
-    //         }, {emitEvent: false});
-    //       }
-    //       }
-    //     }
-    //   }
-    // });
-
   }
 
   abrirModalEditar(pagamento: Pagamento) {
+    this.abrir();
     this.estaEditando = true;
-    this.pagamento = pagamento;
+    this.pagamento = new Pagamento();
+    Object.assign(this.pagamento, pagamento);
 
-    this.inicializarElementos();
-    this.modalInstance.open();
+    // Obtendo data e hora para adicionarmos no nosso dataPickup
+    this.dataPickup = new DatePickup();
+    this.dataPickup.data = this.getDataFromDate(new Date(pagamento.date));
+    this.dataPickup.hora = this.getTime(new Date(pagamento.date));
+
+    this.resetarCampos();
+    this.registrarForm();
+    this.setarCamposValidos();
   }
 
   abrirModalCriar() {
+    this.abrir();
     this.estaEditando = false;
-    // this.pagamento = new Pagamento();
+    this.pagamento = new Pagamento();
+    this.dataPickup = new DatePickup();
 
-    this.inicializarElementos();
-    this.modalInstance.open();
+    this.resetarCampos();
+    this.registrarForm();
   }
 
-  hide() {
+  private abrir() {
+    this.estaEditando = false;
+    this.inicializarElementos();
+    this.modalInstance.open();
+    this.resetarCampos();
+  }
+
+  fechar() {
     this.modalInstance.close();
+  }
+
+  resetarCampos() {
+    this.formPagamento.reset();
+    this.formPagamento.markAsPristine();
+    this.formPagamento.markAsUntouched();
+    this.formPagamento.updateValueAndValidity();
+
+    window.setTimeout(() => {
+      document.querySelectorAll('.invalid, .valid').forEach((element) => {
+        element.classList.remove('invalid', 'valid');
+      });
+      M.updateTextFields(); // Necessário para o materialize ajustar os campos
+    }, 50);
+  }
+
+  setarCamposValidos() {
+    window.setTimeout(() => { // timeout para poder montar os elementos em tela
+      (document.getElementById(this.idModal)).querySelectorAll('.validate').forEach((element) => {
+        element.classList.add('valid');
+      })
+      M.updateTextFields(); // Necessário para o materialize poder ajustar os elementos
+    }, 50)
   }
 
   inicializarElementos() {
@@ -92,14 +119,26 @@ export class ModalPagamentoComponent implements OnInit {
     this.modalInstance = M.Modal.init(elementModal, MODAL_OPTIONS);
   }
 
-  toISOFormat(dateTimeString: string) { // "23/10/2015"
+  toISOFormat(dateTimeString: string) { // Ex.: recebemos "23/11/2021 : 10:12"
     let [date, time] = dateTimeString.split(' ');
     let [DD, MM, YYYY] = date.split('/');
     let [HH, mm] = time.split(':');
     return `${YYYY}-${MM}-${DD}T${HH}:${mm}`;
   }
 
-  enviarPagamento() {
+  getDataFromDate(dateObj: Date): string { // Obtemos string dd/mm/yyyy de um Date
+    let ano = dateObj.getFullYear();
+    let mes = (1 + dateObj.getMonth()).toString().padStart(2, '0');
+    let dia = dateObj.getDate().toString().padStart(2, '0');
+
+    return `${dia}/${mes}/${ano}`;
+  }
+
+  getTime(dateObj: Date): string { // retorna hh:mm string de um Date
+    return   `${(dateObj.getHours()<10?'0':'')}${dateObj.getHours()}:${(dateObj.getMinutes()<10?'0':'')}${dateObj.getMinutes()}`;
+  }
+
+  enviarFormulario() {
     this.isSubmitted = true;
     if (this.formPagamento.invalid) {
       return;
@@ -109,7 +148,15 @@ export class ModalPagamentoComponent implements OnInit {
       date: this.toISOFormat(`${this.formPagamento.controls['data'].value} ${this.formPagamento.controls['hora'].value}`)
     });
 
-    console.log('this.formPagamento.value', this.formPagamento.value);
+    if(this.estaEditando) {
+      this.editarPagamento();
+      return;
+    }
+
+    this.enviarPagamento();
+  }
+
+  enviarPagamento() {
     this.loadingService.exibir();
     this.pagamentoService.cadastrarPagamento(this.formPagamento.value)
       .pipe(
@@ -118,17 +165,43 @@ export class ModalPagamentoComponent implements OnInit {
         })
       )
       .subscribe({
-        next: () => {
-          // let parametros = {
-          //   sucesso: true,
-          //   objeto: this.pagamentoExclusao
-          // }
-          // this.modalExlusaoService.atualizarStatusExclusao(parametros);
-          this.hide();
+        next: (retorno) => {
+          let parametros = {
+            sucesso: true,
+            objeto: retorno
+          }
+          this.modalPagamentoService.atualizarStatus(parametros);
+
+          this.fechar();
           M.toast({html: 'Pagamento criado com sucesso!', displayLength: 3000, classes: 'green'});
         },
         error: error => {
           M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro ao tentar criar o pagamento', displayLength: 3000, classes: 'red'});
+        },
+    });
+  }
+
+  editarPagamento() {
+    this.loadingService.exibir();
+    this.pagamentoService.editarPagamento(this.pagamento.id, this.formPagamento.value)
+      .pipe(
+        finalize(() => {
+          this.loadingService.esconder();
+        })
+      )
+      .subscribe({
+        next: (retorno) => {
+          let parametros = {
+            sucesso: true,
+            objeto: retorno
+          }
+          this.modalPagamentoService.atualizarStatus(parametros)
+
+          this.fechar();
+          M.toast({html: 'Pagamento editado com sucesso!', displayLength: 3000, classes: 'green'});
+        },
+        error: error => {
+          M.toast({html: (error && error.mensagem) ? error.mensagem : 'Houve um erro ao editar o pagamento', displayLength: 3000, classes: 'red'});
         },
     });
   }

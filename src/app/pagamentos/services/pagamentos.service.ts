@@ -45,4 +45,8 @@ export class PagamentosService {
     return this.apiService.post(this.API_URL, pagamento)
   }
 
+  editarPagamento(id: string | number, pagamento: Pagamento) {
+    return this.apiService.put(`${this.API_URL}/${id}`, pagamento)
+  }
+
 }
