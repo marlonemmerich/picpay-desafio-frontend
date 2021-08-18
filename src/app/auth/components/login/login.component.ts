@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
     if (this.formLogin.invalid) {
       return;
     }
+    this.loadingService.exibir();
 
     this.authService.login(this.formLogin.value)
     .pipe(
