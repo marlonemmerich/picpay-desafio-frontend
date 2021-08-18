@@ -57,7 +57,7 @@ export class ListComponent implements OnInit {
     private pagamentosService: PagamentosService,
     private loadingService: LoadingService,
     private modalExclusaoService: ModalExclusaoService,
-    private modalExclusaoPagamento: ModalPagamentoService,
+    private modalPagamentoService: ModalPagamentoService,
     private router: Router
   ) { }
 
@@ -73,7 +73,7 @@ export class ListComponent implements OnInit {
     });
 
     /* observando a modal de pagamento */
-    this.modalExclusaoService.statusExclusao.subscribe((retorno: RetornoModal) => {
+    this.modalPagamentoService.status.subscribe((retorno: RetornoModal) => {
       if (retorno.sucesso) {
         this.obterPagamentosResetandoPagina();
       }
