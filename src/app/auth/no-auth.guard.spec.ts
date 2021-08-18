@@ -44,7 +44,7 @@ describe('NoAuthGuard', () => {
     expect(guard['router'].navigate).not.toHaveBeenCalled();
   });
 
-  it('Usuário está logado - deve redirecionar para listagem de pagamentos e retornar true', () => {
+  it('Usuário está logado - deve redirecionar para listagem de pagamentos e retornar false', () => {
     spyOn(guard['authService'], 'checkStorageUsuarioLogado').and.callFake(() => {
       return true;
     })
