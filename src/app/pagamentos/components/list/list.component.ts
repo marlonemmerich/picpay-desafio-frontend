@@ -1,5 +1,6 @@
 import { HttpResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import * as M from 'materialize-css';
 import { finalize, map } from 'rxjs/operators';
 import { SortOrdem } from 'src/app/core/enums/sort-ordem';
@@ -56,7 +57,8 @@ export class ListComponent implements OnInit {
     private pagamentosService: PagamentosService,
     private loadingService: LoadingService,
     private modalExclusaoService: ModalExclusaoService,
-    private modalExclusaoPagamento: ModalPagamentoService
+    private modalExclusaoPagamento: ModalPagamentoService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -82,6 +84,10 @@ export class ListComponent implements OnInit {
     setTimeout(() => {
       M.FormSelect.init(document.querySelectorAll('select'));
     }, 50);
+  }
+
+  redirecionarPagamento(id: number | string) {
+    this.router.navigate(['/pagamento/', id]);
   }
 
   obterPagamentos() {

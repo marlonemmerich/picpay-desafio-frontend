@@ -48,6 +48,10 @@ export class PagamentosService {
     return this.apiService.get(this.API_URL, httpParams);
   }
 
+  getPagamento(id: string | number) {
+    return this.apiService.get(`${this.API_URL}/${id}`);
+  }
+
   removerPagamento(pagamento: Pagamento) {
     return this.apiService.delete(`${this.API_URL}/${pagamento.id}`);
   }

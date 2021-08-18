@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
+import { DetalhesPagamentoComponent } from './pagamento/components/detalhes-pagamento/detalhes-pagamento.component';
 
 registerLocaleData(ptBr);
 
@@ -21,6 +22,7 @@ registerLocaleData(ptBr);
     AppComponent,
     LoadingComponent,
     HeaderComponent,
+    DetalhesPagamentoComponent,
    ],
   imports: [
     HttpClientModule,
