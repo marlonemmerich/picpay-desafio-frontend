@@ -19,7 +19,7 @@ export class DetalhesPagamentoComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(
       (data) => {
-        Object.assign(this.pagamento, data.pagamento)
+        Object.assign(this.pagamento, data.pagamento);
       }
     );
   }

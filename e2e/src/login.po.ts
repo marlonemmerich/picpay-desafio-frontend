@@ -6,11 +6,11 @@ export class LoginPage {
   }
 
   setInputEmail(texto) {
-    return element(by.id('input-email')).sendKeys(texto) as Promise<any>;;
+    return element(by.id('input-email')).sendKeys(texto) as Promise<any>;
   }
 
   getInputSenha() {
-    return element(by.id('input-password'));;
+    return element(by.id('input-password'));
   }
 
   setInputSenha(texto) {
@@ -28,5 +28,4 @@ export class LoginPage {
   clickLogin() {
     return element(by.id('button-login')).click() as Promise<any>;
   }
-
 }

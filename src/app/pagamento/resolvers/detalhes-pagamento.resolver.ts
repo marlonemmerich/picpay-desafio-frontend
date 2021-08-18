@@ -18,8 +18,8 @@ export class DetalhesPagamentoResolver implements Resolve<boolean> {
   ) {
   }
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.pagamentoService.getPagamento(route.params['id'])
-    .pipe(catchError((err) => this.router.navigateByUrl('/pagamentos') ))
+    return this.pagamentoService.getPagamento(route.params.id)
+      .pipe(catchError((err) => this.router.navigateByUrl('/pagamentos')));
   }
 }
 
