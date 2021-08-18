@@ -7,7 +7,7 @@ export class SortTableHeader {
     isSorting: boolean;
     sortOrdem: SortOrdem;
 
-    constructor(parametros: any) {
+    constructor(parametros?: any ) {
         this.textoCampo = (parametros && parametros.textoCampo) ? parametros.textoCampo : '';
         this.chaveCampo = (parametros && parametros.chaveCampo) ? parametros.chaveCampo : '';
         this.isSorting = (parametros && parametros.sort) ? parametros.sort : false;
