@@ -26,6 +26,11 @@ export class ApiService {
       .pipe(catchError(this.parseErrors));
   }
 
+  patch(path: string, body = {}): Observable<any> {
+    return this.http.patch(path, body)
+      .pipe(catchError(this.parseErrors));
+  }
+
   post(path: string, body = {}): Observable<any> {
     return this.http.post(path, body)
       .pipe(catchError(this.parseErrors));

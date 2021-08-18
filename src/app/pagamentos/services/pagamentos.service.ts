@@ -61,7 +61,7 @@ export class PagamentosService {
   }
 
   editarPagamento(id: string | number, pagamento: Pagamento) {
-    return this.apiService.put(`${this.API_URL}/${id}`, pagamento);
+    return this.apiService.patch(`${this.API_URL}/${id}`, pagamento);
   }
 
 }
