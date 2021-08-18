@@ -1,6 +1,6 @@
 import { Filtro } from './filtro.model';
 
-fdescribe('Filtro', () => {
+describe('Filtro', () => {
   it('should create an instance', () => {
     expect(new Filtro()).toBeTruthy();
   });
