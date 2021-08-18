@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ListComponent } from './components/list/list.component';
 import { AuthGuard } from '../core/guards/auth.guard';
-import { DetalhesPagamentoResolver } from '../pagamento/resolvers/detalhes-pagamento.resolver';
-import { DetalhesPagamentoComponent } from '../pagamento/components/detalhes-pagamento/detalhes-pagamento.component';
+import { DetalhesPagamentoResolver } from './resolvers/detalhes-pagamento.resolver';
+import { DetalhesPagamentoComponent } from './components/detalhes-pagamento/detalhes-pagamento.component';
 
 
 const routes: Routes = [

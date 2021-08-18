@@ -13,7 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { registerLocaleData } from '@angular/common';
-import { DetalhesPagamentoComponent } from './pagamento/components/detalhes-pagamento/detalhes-pagamento.component';
+import { DetalhesPagamentoComponent } from './pagamentos/components/detalhes-pagamento/detalhes-pagamento.component';
 
 registerLocaleData(ptBr);
 
