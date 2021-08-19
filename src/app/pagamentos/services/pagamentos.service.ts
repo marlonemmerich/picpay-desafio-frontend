@@ -18,17 +18,14 @@ export class PagamentosService {
 
 
   getPagamentos(paginacao: Paginacao, filtro: Filtro, sort: SortTableHeader) {
-    const params = {
-      _start: undefined,
-      _limit: undefined,
-      _sort: undefined,
-      _order: undefined,
+    let params = {
     };
+
     const intQuantidadePorPagina = parseInt(paginacao.quantidadePorPagina, 10);
     const paginaAtual = paginacao.paginaAtual;
 
-    params._start = paginaAtual === 1 ? 0 : (paginaAtual * intQuantidadePorPagina) - intQuantidadePorPagina;
-    params._limit = intQuantidadePorPagina + 1;
+    params['_start'] = paginaAtual === 1 ? 0 : (paginaAtual * intQuantidadePorPagina) - intQuantidadePorPagina;
+    params['_limit'] = intQuantidadePorPagina + 1;
     /* Linha acima apenas para definir se
        possui próxima página (backend não
        retornou o header com "X-Total-Count" =\)
@@ -39,8 +36,8 @@ export class PagamentosService {
     }
 
     if (sort.isSorting) {
-      params._sort =  sort.chaveCampo;
-      params._order =  sort.sortOrdem;
+      params['_sort'] =  sort.chaveCampo;
+      params['_order'] =  sort.sortOrdem;
     }
 
     const httpParams = new HttpParams({ fromObject: params });
