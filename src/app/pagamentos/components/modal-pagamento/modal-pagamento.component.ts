@@ -65,7 +65,6 @@ export class ModalPagamentoComponent implements OnInit {
     this.dataPickup.data = this.getDataFromDate(new Date(pagamento.date));
     this.dataPickup.hora = this.getTime(new Date(pagamento.date));
 
-    this.resetarCampos();
     this.registrarForm();
     this.setarCamposValidos();
   }
@@ -76,7 +75,6 @@ export class ModalPagamentoComponent implements OnInit {
     this.pagamento = new Pagamento();
     this.dataPickup = new DatePickup();
 
-    this.resetarCampos();
     this.registrarForm();
   }
 
@@ -98,7 +96,7 @@ export class ModalPagamentoComponent implements OnInit {
     this.formPagamento.updateValueAndValidity();
 
     window.setTimeout(() => {
-      document.querySelectorAll('.invalid, .valid').forEach((element) => {
+      (document.getElementById(this.idModal)).querySelectorAll('.invalid, .valid').forEach((element) => {
         element.classList.remove('invalid', 'valid');
       });
       M.updateTextFields(); // Necessário para o materialize ajustar os campos
@@ -119,7 +117,7 @@ export class ModalPagamentoComponent implements OnInit {
     this.modalInstance = M.Modal.init(elementModal, MODAL_OPTIONS);
   }
 
-  toISOFormat(dateTimeString: string) { // Ex.: recebemos "23/11/2021 : 10:12"
+  toISOFormat(dateTimeString: string) { // Ex.: recebemos "23/11/2021: 10:12"
     const [date, time] = dateTimeString.split(' ');
     const [DD, MM, YYYY] = date.split('/');
     const [HH, mm] = time.split(':');
