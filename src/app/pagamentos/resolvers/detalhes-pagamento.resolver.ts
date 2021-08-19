@@ -17,8 +17,8 @@ export class DetalhesPagamentoResolver implements Resolve<boolean> {
     private router: Router
   ) {
   }
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
-    return this.pagamentoService.getPagamento(route.params.id)
+  resolve(route: ActivatedRouteSnapshot): Observable<boolean> {
+    return this.pagamentoService.getPagamento(route.params['id'])
       .pipe(catchError((err) => this.router.navigateByUrl('/pagamentos')));
   }
 }

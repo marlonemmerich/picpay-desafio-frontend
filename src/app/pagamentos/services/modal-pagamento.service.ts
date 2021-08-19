@@ -12,12 +12,12 @@ export class ModalPagamentoService {
   pagamento: Pagamento = new Pagamento();
   constructor() { }
 
-  getSituacao(situacaoAtualizada) {
+  private setSituacao(situacaoAtualizada) {
     this.status.next(situacaoAtualizada);
   }
 
   atualizarStatus(param: RetornoModal) {
-    this.getSituacao(param);
+    this.setSituacao(param);
   }
 
 }

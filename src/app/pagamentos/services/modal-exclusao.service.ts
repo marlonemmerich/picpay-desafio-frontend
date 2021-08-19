@@ -12,12 +12,12 @@ export class ModalExclusaoService {
   pagamentoExclusao: Pagamento = new Pagamento();
   constructor() { }
 
-  getSituacaoExclusao(situacaoAtualizada) {
+  private setSituacaoExclusao(situacaoAtualizada) {
     this.statusExclusao.next(situacaoAtualizada);
   }
 
   atualizarStatusExclusao(param: any) {
-    this.getSituacaoExclusao(param);
+    this.setSituacaoExclusao(param);
   }
 
 }
