@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 
-fdescribe('AuthGuard', () => {
+describe('AuthGuard', () => {
   let guard: AuthGuard;
 
   beforeEach(async () => {

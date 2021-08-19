@@ -1,6 +1,6 @@
 import { Paginacao } from './paginacao.model';
 
-fdescribe('Paginacao', () => {
+describe('Paginacao', () => {
   it('should create an instance', () => {
     expect(new Paginacao()).toBeTruthy();
   });
